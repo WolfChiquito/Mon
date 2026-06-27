@@ -1108,7 +1108,7 @@
     import { getAuth, signInAnonymously, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
     import { getFirestore, collection, onSnapshot, addDoc, updateDoc, deleteDoc, doc, query, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
-    // Configuración Firebase (Propia del usuario)
+    // Configuración Firebase
     const firebaseConfig = {
       apiKey: "AIzaSyBbITbfedEAnSilsP2fW_uRedKT49-dl24",
       authDomain: "proymon-9f5a1.firebaseapp.com",
@@ -1144,9 +1144,6 @@
 
     // Guardado de la clave maestra cargada de Firestore
     let vaultPassword = '0902'; 
-    
-    let currentUser = null;
-    let errorShown = false;
 
     // Estado global para las imágenes flotantes sincronizadas con Firebase
     let hoverImagesData = {
@@ -1154,48 +1151,6 @@
       gasto: '',
       ahorro: ''
     };
-
-    // Manejador centralizado de errores de permisos de Firebase
-    function showFirestoreError(error) {
-        if (errorShown) return;
-        const errStr = error?.toString().toLowerCase() || "";
-        
-        // Atrapa errores específicos de permisos o seguridad
-        if (errStr.includes("permission") || errStr.includes("permisos") || errStr.includes("missing")) {
-            errorShown = true;
-            const div = document.createElement('div');
-            div.id = 'firebase-rules-error';
-            div.className = 'fixed bottom-4 left-4 right-4 md:left-1/4 md:right-1/4 bg-rose-600 text-white p-6 rounded-3xl shadow-2xl z-[9999] flex items-start gap-4 border border-rose-500/50 backdrop-blur-xl bg-opacity-95';
-            div.innerHTML = `
-                <div class="mt-1 flex-shrink-0 bg-white/20 p-2 rounded-xl">
-                    <i data-lucide="shield-alert" class="w-6 h-6 text-white"></i>
-                </div>
-                <div>
-                    <h4 class="font-black text-lg mb-2 leading-tight">Permisos Denegados en Firebase</h4>
-                    <p class="text-sm mb-3 opacity-90">Como conectaste tu propia configuración (proymon-9f5a1), Firebase está bloqueando el acceso por seguridad. Para solucionarlo, ve a tu consola de Firebase y haz lo siguiente:</p>
-                    
-                    <div class="bg-black/30 rounded-xl p-4 mb-4 text-sm font-medium">
-                        <ol class="list-decimal pl-4 space-y-3">
-                            <li>En <b>Authentication &gt; Sign-in method</b>, habilita el acceso <b>Anónimo</b>.</li>
-                            <li>En <b>Firestore Database &gt; Rules</b>, cambia las reglas a esto para poder probarla:
-                            <pre class="bg-black/50 p-3 rounded-lg mt-2 overflow-x-auto text-xs font-mono text-gray-300"><code>rules_version = '2';
-service cloud.firestore {
-  match /databases/{database}/documents {
-    match /{document=**} {
-      allow read, write: if true;
-    }
-  }
-}</code></pre>
-                            </li>
-                        </ol>
-                    </div>
-                    <button onclick="document.getElementById('firebase-rules-error').remove(); window.errorShown = false;" class="bg-white text-rose-600 px-6 py-2.5 rounded-xl font-bold text-sm hover:bg-rose-50 transition-all active:scale-95 shadow-md">Entendido</button>
-                </div>
-            `;
-            document.body.appendChild(div);
-            if (window.lucide) window.lucide.createIcons();
-        }
-    }
 
     async function checkBiometricsSupport() {
       if (!window.PublicKeyCredential) return false;
@@ -1347,30 +1302,24 @@ service cloud.firestore {
       }
     }
 
-    // Inicialización del proceso de Autenticación Requerida antes de consultas
-    const initAuth = async () => {
+    async function initInvisibleAuth() {
       try {
         await signInAnonymously(auth);
       } catch (error) {
-        console.error("Error al conectar a Firebase Auth:", error);
-        showFirestoreError("Asegúrate de habilitar el método de acceso 'Anónimo' en Firebase Authentication.");
+        console.error("Error al conectar de forma invisible:", error);
       }
-    };
+    }
 
     onAuthStateChanged(auth, (user) => {
-      currentUser = user;
       if (user) {
         loadData();
         loadUserProfileAndSecurity();
       }
     });
 
-    initAuth();
+    initInvisibleAuth();
 
     function loadData() {
-      // Guarda de seguridad: Prevenir consultas si no hay sesión
-      if (!currentUser) return;
-
       const qMovements = query(collection(db, 'artifacts', APP_ID, 'public', 'data', 'movements'));
       onSnapshot(qMovements, (snapshot) => {
         movements = snapshot.docs.map(doc => ({
@@ -1379,10 +1328,7 @@ service cloud.firestore {
         }));
         movements.sort((a, b) => new Date(b.date) - new Date(a.date));
         renderApp();
-      }, (error) => {
-        console.error("Error cargando movimientos:", error);
-        showFirestoreError(error);
-      });
+      }, (error) => console.error("Error cargando movimientos:", error));
 
       const qAccounts = query(collection(db, 'artifacts', APP_ID, 'public', 'data', 'accounts'));
       onSnapshot(qAccounts, async (snapshot) => {
@@ -1392,20 +1338,15 @@ service cloud.firestore {
         }));
         if (loadedAccounts.length === 0) {
           for (const acc of DEFAULT_ACCOUNTS) {
-            try {
-              await addDoc(collection(db, 'artifacts', APP_ID, 'public', 'data', 'accounts'), {
-                name: acc.name,
-                emoji: acc.emoji,
-                initialBalance: acc.initialBalance || 0,
-                initialBalanceDate: acc.initialBalanceDate || new Date().toISOString().split('T')[0],
-                isDefault: false,
-                accountType: acc.accountType || 'debito',
-                timestamp: new Date().toISOString()
-              });
-            } catch (err) {
-              console.error("Error al crear cuentas por defecto:", err);
-              showFirestoreError(err);
-            }
+            await addDoc(collection(db, 'artifacts', APP_ID, 'public', 'data', 'accounts'), {
+              name: acc.name,
+              emoji: acc.emoji,
+              initialBalance: acc.initialBalance || 0,
+              initialBalanceDate: acc.initialBalanceDate || new Date().toISOString().split('T')[0],
+              isDefault: false,
+              accountType: acc.accountType || 'debito',
+              timestamp: new Date().toISOString()
+            });
           }
           return;
         }
@@ -1413,10 +1354,7 @@ service cloud.firestore {
         renderAccountsSection();
         updateAccountsSelectors();
         renderApp();
-      }, (error) => {
-        console.error("Error cargando cuentas:", error);
-        showFirestoreError(error);
-      });
+      }, (error) => console.error("Error cargando cuentas:", error));
 
       const qSubcats = query(collection(db, 'artifacts', APP_ID, 'public', 'data', 'subcategories'));
       onSnapshot(qSubcats, (snapshot) => {
@@ -1427,16 +1365,11 @@ service cloud.firestore {
         customSubcategories = loadedSubcats.length > 0 ? loadedSubcats : DEFAULT_SUBCATEGORIES;
         updateSubcategorySelectors();
         renderApp();
-      }, (error) => {
-        console.error("Error cargando subcategorías:", error);
-        showFirestoreError(error);
-      });
+      }, (error) => console.error("Error cargando subcategorías:", error));
     }
 
     function loadUserProfileAndSecurity() {
-      // Guarda de seguridad: Prevenir consultas si no hay sesión
-      if (!currentUser) return;
-
+      // Sincronización en tiempo real del perfil (disponible en todos los dispositivos)
       const profileDocRef = doc(db, 'artifacts', APP_ID, 'public', 'data', 'settings', 'profile');
       onSnapshot(profileDocRef, (docSnap) => {
         if (docSnap.exists()) {
@@ -1445,11 +1378,9 @@ service cloud.firestore {
         } else {
           updateUserProfileUI('Mónica López', '');
         }
-      }, (error) => {
-        console.error("Error sincronizando perfil:", error);
-        showFirestoreError(error);
-      });
+      }, (error) => console.error("Error sincronizando perfil:", error));
 
+      // Sincronización en tiempo real de la seguridad (contraseña)
       const securityDocRef = doc(db, 'artifacts', APP_ID, 'public', 'data', 'settings', 'security');
       onSnapshot(securityDocRef, (docSnap) => {
         if (docSnap.exists()) {
@@ -1458,11 +1389,9 @@ service cloud.firestore {
             vaultPassword = securityData.password;
           }
         }
-      }, (error) => {
-        console.error("Error sincronizando clave:", error);
-        showFirestoreError(error);
-      });
+      }, (error) => console.error("Error sincronizando clave:", error));
       
+      // Sincronización en tiempo real de las imágenes flotantes en Firebase
       const imagesDocRef = doc(db, 'artifacts', APP_ID, 'public', 'data', 'settings', 'hoverImages');
       onSnapshot(imagesDocRef, async (docSnap) => {
         if (docSnap.exists()) {
@@ -1472,13 +1401,9 @@ service cloud.firestore {
             await setDoc(imagesDocRef, hoverImagesData);
           } catch (e) {
             console.error("Error guardando imágenes por defecto:", e);
-            showFirestoreError(e);
           }
         }
-      }, (error) => {
-        console.error("Error sincronizando imágenes:", error);
-        showFirestoreError(error);
-      });
+      }, (error) => console.error("Error sincronizando imágenes:", error));
 
       updateBiometricLoginUI();
       updateBiometricSettingsUI();
