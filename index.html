@@ -25,12 +25,12 @@
 
   <style>
     body {
-      background-color: #050409;
+      background-color: #090407;
       color: #f3f4f6;
       font-family: ui-sans-serif, system-ui, sans-serif;
       background-image: 
-        radial-gradient(at 0% 0%, rgba(112, 0, 255, 0.08) 0px, transparent 50%),
-        radial-gradient(at 100% 100%, rgba(255, 0, 127, 0.06) 0px, transparent 50%);
+        radial-gradient(at 0% 0%, rgba(255, 102, 178, 0.08) 0px, transparent 50%),
+        radial-gradient(at 100% 100%, rgba(255, 26, 117, 0.06) 0px, transparent 50%);
       background-attachment: fixed;
       transition: background-color 0.3s ease, color 0.3s ease;
       overflow-x: hidden;
@@ -78,34 +78,34 @@
       background: #090710;
     }
     ::-webkit-scrollbar-thumb {
-      background: #7000ff;
+      background: #ff66b2;
       border-radius: 10px;
-      box-shadow: 0 0 5px #7000ff;
+      box-shadow: 0 0 5px #ff66b2;
     }
     ::-webkit-scrollbar-thumb:hover {
-      background: #ff007f;
-      box-shadow: 0 0 10px #ff007f;
+      background: #ff1a75;
+      box-shadow: 0 0 10px #ff1a75;
     }
 
     /* Efectos de resplandor de neón (Cyber Glow) */
-    .neon-border-cyan {
-      box-shadow: 0 0 10px rgba(0, 240, 255, 0.25), inset 0 0 5px rgba(0, 240, 255, 0.1);
-      border: 1px solid rgba(0, 240, 255, 0.4);
-    }
     .neon-border-pink {
-      box-shadow: 0 0 10px rgba(255, 0, 127, 0.25), inset 0 0 5px rgba(255, 0, 127, 0.1);
-      border: 1px solid rgba(255, 0, 127, 0.4);
+      box-shadow: 0 0 10px rgba(255, 179, 217, 0.25), inset 0 0 5px rgba(255, 179, 217, 0.1);
+      border: 1px solid rgba(255, 179, 217, 0.4);
     }
-    .neon-border-purple {
-      box-shadow: 0 0 10px rgba(112, 0, 255, 0.25), inset 0 0 5px rgba(112, 0, 255, 0.1);
-      border: 1px solid rgba(112, 0, 255, 0.4);
+    .neon-border-rose {
+      box-shadow: 0 0 10px rgba(255, 26, 117, 0.25), inset 0 0 5px rgba(255, 26, 117, 0.1);
+      border: 1px solid rgba(255, 26, 117, 0.4);
+    }
+    .neon-border-fuchsia {
+      box-shadow: 0 0 10px rgba(255, 102, 178, 0.25), inset 0 0 5px rgba(255, 102, 178, 0.1);
+      border: 1px solid rgba(255, 102, 178, 0.4);
     }
 
-    .neon-text-cyan {
-      text-shadow: 0 0 8px rgba(0, 240, 255, 0.6);
-    }
     .neon-text-pink {
-      text-shadow: 0 0 8px rgba(255, 0, 127, 0.6);
+      text-shadow: 0 0 8px rgba(255, 179, 217, 0.6);
+    }
+    .neon-text-rose {
+      text-shadow: 0 0 8px rgba(255, 26, 117, 0.6);
     }
 
     /* Glassmorphism Premium */
@@ -113,7 +113,7 @@
       background: rgba(11, 8, 20, 0.6);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
-      border: 1px solid rgba(112, 0, 255, 0.15);
+      border: 1px solid rgba(255, 102, 178, 0.15);
       transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease, border-color 0.3s ease;
     }
 
@@ -128,125 +128,125 @@
     }
 
     body.light-theme {
-      background-color: #f5f4fa !important;
-      color: #1a1528 !important;
+      background-color: #fdf2f8 !important;
+      color: #2d131f !important;
       background-image: 
-        radial-gradient(at 0% 0%, rgba(112, 0, 255, 0.04) 0px, transparent 50%),
-        radial-gradient(at 100% 100%, rgba(0, 240, 255, 0.04) 0px, transparent 50%) !important;
+        radial-gradient(at 0% 0%, rgba(255, 102, 178, 0.04) 0px, transparent 50%),
+        radial-gradient(at 100% 100%, rgba(255, 179, 217, 0.04) 0px, transparent 50%) !important;
     }
     body.light-theme .glass-card {
       background: rgba(255, 255, 255, 0.75) !important;
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
-      border: 1px solid rgba(112, 0, 255, 0.12) !important;
-      box-shadow: 0 8px 32px 0 rgba(112, 0, 255, 0.05) !important;
+      border: 1px solid rgba(255, 102, 178, 0.12) !important;
+      box-shadow: 0 8px 32px 0 rgba(255, 102, 178, 0.05) !important;
     }
     
     /* Reemplazos de fondos de color gris oscuro para el modo claro */
     body.light-theme .bg-gray-950\/90 { 
       background-color: rgba(255, 255, 255, 0.95) !important; 
-      border: 1px solid rgba(112, 0, 255, 0.1) !important;
+      border: 1px solid rgba(255, 102, 178, 0.1) !important;
     }
     body.light-theme .bg-gray-950\/85 { background-color: rgba(255, 255, 255, 0.9) !important; }
-    body.light-theme .bg-gray-950 { background-color: #ffffff !important; border-color: #e2e0eb !important; }
+    body.light-theme .bg-gray-950 { background-color: #ffffff !important; border-color: #fce7f3 !important; }
     body.light-theme .bg-gray-900\/40 { 
       background-color: rgba(255, 255, 255, 0.7) !important; 
-      border-color: rgba(112, 0, 255, 0.1) !important;
+      border-color: rgba(255, 102, 178, 0.1) !important;
     }
     body.light-theme .bg-gray-900\/50 { 
       background-color: rgba(255, 255, 255, 0.5) !important; 
-      border-color: rgba(112, 0, 255, 0.08) !important;
+      border-color: rgba(255, 102, 178, 0.08) !important;
     }
     body.light-theme .bg-gray-900\/30 { 
       background-color: rgba(255, 255, 255, 0.7) !important; 
-      border-color: rgba(112, 0, 255, 0.1) !important;
+      border-color: rgba(255, 102, 178, 0.1) !important;
     }
     body.light-theme .bg-gray-900 { 
-      background-color: #fbfbfe !important; 
-      border-color: #e2e0eb !important;
+      background-color: #fff5f9 !important; 
+      border-color: #fce7f3 !important;
     }
     body.light-theme .bg-gray-950\/80 {
       background-color: rgba(255, 255, 255, 0.9) !important;
-      border-color: rgba(112, 0, 255, 0.1) !important;
+      border-color: rgba(255, 102, 178, 0.1) !important;
     }
     body.light-theme .border-gray-800 { 
-      border-color: #e2e0eb !important; 
+      border-color: #fce7f3 !important; 
     }
     
     /* Corrección de color de fuentes en modo claro */
-    body.light-theme .text-gray-400 { color: #4a3e5c !important; }
-    body.light-theme .text-gray-500 { color: #6e6183 !important; }
-    body.light-theme .text-gray-300 { color: #1a1528 !important; }
-    body.light-theme .text-gray-200 { color: #1a1528 !important; }
-    body.light-theme .text-white { color: #1a1528 !important; }
+    body.light-theme .text-gray-400 { color: #702947 !important; }
+    body.light-theme .text-gray-500 { color: #8a3d5f !important; }
+    body.light-theme .text-gray-300 { color: #2d131f !important; }
+    body.light-theme .text-gray-200 { color: #2d131f !important; }
+    body.light-theme .text-white { color: #2d131f !important; }
     
     /* Inputs y selectores transparentes sobre contenedor para un look limpio */
     body.light-theme input, 
     body.light-theme select {
       background-color: #ffffff !important;
-      color: #1a1528 !important;
-      border-color: #d2cbdc !important;
+      color: #2d131f !important;
+      border-color: #fbcfe8 !important;
     }
     body.light-theme select {
       background-color: transparent !important;
     }
-    body.light-theme option { background-color: #ffffff !important; color: #1a1528 !important; }
-    body.light-theme .hover\:bg-gray-800\/50:hover { background-color: rgba(112, 0, 255, 0.05) !important; }
-    body.light-theme .hover\:bg-gray-900:hover { background-color: #f5f4fa !important; }
+    body.light-theme option { background-color: #ffffff !important; color: #2d131f !important; }
+    body.light-theme .hover\:bg-gray-800\/50:hover { background-color: rgba(255, 102, 178, 0.05) !important; }
+    body.light-theme .hover\:bg-gray-900:hover { background-color: #fdf2f8 !important; }
     
     /* Configuración del calendario OVALADO en modo claro */
     body.light-theme #calendar-grid > button { 
       background-color: rgba(255, 255, 255, 0.8) !important; 
-      border-color: rgba(112, 0, 255, 0.1) !important; 
+      border-color: rgba(255, 102, 178, 0.1) !important; 
     }
     body.light-theme #calendar-grid > button span { 
-      color: #1a1528 !important; 
+      color: #2d131f !important; 
     }
     body.light-theme #calendar-grid > button:hover { 
-      background-color: rgba(112, 0, 255, 0.05) !important; 
-      border-color: rgba(112, 0, 255, 0.25) !important;
+      background-color: rgba(255, 102, 178, 0.05) !important; 
+      border-color: rgba(255, 102, 178, 0.25) !important;
     }
-    body.light-theme #calendar-grid > button.bg-\[\#7000ff\]\/10 { 
-      background-color: rgba(112, 0, 255, 0.1) !important; 
-      color: #7000ff !important; 
-      border-color: rgba(112, 0, 255, 0.35) !important; 
+    body.light-theme #calendar-grid > button.bg-\[\#ff66b2\]\/10 { 
+      background-color: rgba(255, 102, 178, 0.1) !important; 
+      color: #ff66b2 !important; 
+      border-color: rgba(255, 102, 178, 0.35) !important; 
     }
 
     /* Gráfico de dona optimizado para el modo claro */
     body.light-theme #donut-chart {
-      border-color: rgba(112, 0, 255, 0.1) !important;
-      box-shadow: 0 4px 20px rgba(112, 0, 255, 0.05) !important;
+      border-color: rgba(255, 102, 178, 0.1) !important;
+      box-shadow: 0 4px 20px rgba(255, 102, 178, 0.05) !important;
     }
 
     /* Jewel tones (Colores joya con alta legibilidad para el modo claro) */
-    body.light-theme .text-cyan-400 { color: #00818d !important; }
-    body.light-theme .text-pink-400 { color: #c40062 !important; }
-    body.light-theme .text-purple-400 { color: #5000be !important; }
+    body.light-theme .text-pink-400 { color: #d81b60 !important; }
+    body.light-theme .text-rose-400 { color: #ad1457 !important; }
+    body.light-theme .text-fuchsia-400 { color: #c2185b !important; }
 
     /* Renglones del desglose bajo el gráfico de dona en modo claro */
-    body.light-theme .bg-cyan-500\/10 { 
-      background-color: rgba(0, 129, 141, 0.06) !important; 
-      border-color: rgba(0, 129, 141, 0.15) !important; 
-    }
     body.light-theme .bg-pink-500\/10 { 
-      background-color: rgba(196, 0, 98, 0.06) !important; 
-      border-color: rgba(196, 0, 98, 0.15) !important; 
+      background-color: rgba(216, 27, 96, 0.06) !important; 
+      border-color: rgba(216, 27, 96, 0.15) !important; 
     }
-    body.light-theme .bg-purple-500\/10 { 
-      background-color: rgba(80, 0, 190, 0.06) !important; 
-      border-color: rgba(80, 0, 190, 0.15) !important; 
+    body.light-theme .bg-rose-500\/10 { 
+      background-color: rgba(173, 20, 87, 0.06) !important; 
+      border-color: rgba(173, 20, 87, 0.15) !important; 
+    }
+    body.light-theme .bg-fuchsia-500\/10 { 
+      background-color: rgba(194, 24, 91, 0.06) !important; 
+      border-color: rgba(194, 24, 91, 0.15) !important; 
     }
     
     /* Configuración de listas y modales de subcategorías */
     body.light-theme .bg-gray-900\/60 {
       background-color: rgba(255, 255, 255, 0.8) !important;
-      border-color: rgba(112, 0, 255, 0.1) !important;
+      border-color: rgba(255, 102, 178, 0.1) !important;
     }
     body.light-theme .border-gray-850 {
-      border-color: rgba(112, 0, 255, 0.12) !important;
+      border-color: rgba(255, 102, 178, 0.12) !important;
     }
     body.light-theme .divide-gray-850 > :not([hidden]) ~ :not([hidden]) {
-      border-color: rgba(112, 0, 255, 0.12) !important;
+      border-color: rgba(255, 102, 178, 0.12) !important;
     }
     body.light-theme .bg-gray-950\/20 {
       background-color: rgba(255, 255, 255, 0.3) !important;
@@ -254,18 +254,18 @@
 
     /* Scrollbar minimalista lila en modo claro */
     body.light-theme::-webkit-scrollbar-track {
-      background: #f5f4fa;
+      background: #fdf2f8;
     }
     body.light-theme ::-webkit-scrollbar-track {
-      background: #f5f4fa;
+      background: #fdf2f8;
     }
     body.light-theme::-webkit-scrollbar-thumb {
-      background: #7000ff;
-      box-shadow: 0 0 5px rgba(112, 0, 255, 0.2);
+      background: #ff66b2;
+      box-shadow: 0 0 5px rgba(255, 102, 178, 0.2);
     }
     body.light-theme ::-webkit-scrollbar-thumb {
-      background: #7000ff;
-      box-shadow: 0 0 5px rgba(112, 0, 255, 0.2);
+      background: #ff66b2;
+      box-shadow: 0 0 5px rgba(255, 102, 178, 0.2);
     }
 
     /* Gráfico interactivo animado */
@@ -289,27 +289,27 @@
     }
   </style>
 </head>
-<body class="min-h-screen selection:bg-[#ff007f]/30 p-4 md:p-8 relative">
+<body class="min-h-screen selection:bg-[#ff1a75]/30 p-4 md:p-8 relative">
 
   <!-- Imagen Flotante Tooltip -->
   <img id="snoopy-hover-img" class="fixed z-[9999] hidden w-32 md:w-40 h-auto rounded-2xl shadow-[0_10px_40px_rgba(0,0,0,0.5)] pointer-events-none transform -translate-x-1/2 -translate-y-[110%] transition-opacity duration-200 opacity-0 border border-white/10 object-cover" src="" alt="Tooltip" onerror="this.onerror=null; this.style.display='none';" />
 
   <!-- Pestaña lateral para imágenes flotantes -->
-  <button id="btn-hover-images-settings" onclick="openHoverImagesModal()" class="fixed right-0 top-1/2 -translate-y-1/2 z-40 bg-gray-950/80 border border-gray-800 border-r-0 rounded-l-xl p-2 text-gray-500 hover:text-[#00f0ff] hover:bg-gray-900 backdrop-blur-md shadow-lg transition-all focus:outline-none" title="Personalizar Imágenes Flotantes">
+  <button id="btn-hover-images-settings" onclick="openHoverImagesModal()" class="fixed right-0 top-1/2 -translate-y-1/2 z-40 bg-gray-950/80 border border-gray-800 border-r-0 rounded-l-xl p-2 text-gray-500 hover:text-[#ffb3d9] hover:bg-gray-900 backdrop-blur-md shadow-lg transition-all focus:outline-none" title="Personalizar Imágenes Flotantes">
     <i data-lucide="image" class="w-5 h-5"></i>
   </button>
 
   <!-- PANTALLA DE INICIO DE SESIÓN -->
   <div id="login-screen" class="fixed inset-0 bg-[#040307] z-[100] flex items-center justify-center p-4 transition-all duration-700 ease-out">
-    <div class="absolute inset-0 bg-gradient-to-tr from-[#7000ff]/10 via-transparent to-[#00f0ff]/5 pointer-events-none"></div>
-    <div class="absolute w-80 h-80 bg-[#00f0ff]/5 rounded-full blur-3xl -top-12 -left-12 pointer-events-none"></div>
-    <div class="absolute w-80 h-80 bg-[#7000ff]/5 rounded-full blur-3xl -bottom-12 -right-12 pointer-events-none"></div>
+    <div class="absolute inset-0 bg-gradient-to-tr from-[#ff66b2]/10 via-transparent to-[#ffb3d9]/5 pointer-events-none"></div>
+    <div class="absolute w-80 h-80 bg-[#ffb3d9]/5 rounded-full blur-3xl -top-12 -left-12 pointer-events-none"></div>
+    <div class="absolute w-80 h-80 bg-[#ff66b2]/5 rounded-full blur-3xl -bottom-12 -right-12 pointer-events-none"></div>
 
-    <div class="glass-card p-8 rounded-3xl shadow-[0_0_50px_rgba(112,0,255,0.2)] border border-[#7000ff]/30 w-full max-w-sm text-center relative z-10 animate-fade-in">
-      <div class="inline-flex p-4 bg-gradient-to-br from-[#7000ff]/20 to-[#00f0ff]/5 text-[#00f0ff] rounded-2xl mb-6 border border-[#00f0ff]/30 shadow-lg shadow-[#00f0ff]/10">
-        <i data-lucide="lock" class="w-8 h-8 animate-pulse text-[#00f0ff] filter drop-shadow-[0_0_8px_rgba(0,240,255,0.5)]"></i>
+    <div class="glass-card p-8 rounded-3xl shadow-[0_0_50px_rgba(255,102,178,0.2)] border border-[#ff66b2]/30 w-full max-w-sm text-center relative z-10 animate-fade-in">
+      <div class="inline-flex p-4 bg-gradient-to-br from-[#ff66b2]/20 to-[#ffb3d9]/5 text-[#ffb3d9] rounded-2xl mb-6 border border-[#ffb3d9]/30 shadow-lg shadow-[#ffb3d9]/10">
+        <i data-lucide="lock" class="w-8 h-8 animate-pulse text-[#ffb3d9] filter drop-shadow-[0_0_8px_rgba(255,179,217,0.5)]"></i>
       </div>
-      <h2 class="text-3xl font-extrabold text-white tracking-tight mb-2 neon-text-cyan">Bóveda Patrimonial</h2>
+      <h2 class="text-3xl font-extrabold text-white tracking-tight mb-2 neon-text-pink">Bóveda Patrimonial</h2>
       <p class="text-gray-400 text-xs mb-8 leading-relaxed">Ingrese su clave de seguridad para acceder a su portafolio financiero</p>
       
       <form id="login-form" class="space-y-6">
@@ -318,7 +318,7 @@
             type="password" 
             id="login-password" 
             placeholder="Contraseña" 
-            class="w-full bg-gray-950/90 border border-gray-800 rounded-2xl pl-5 pr-14 py-4 text-center text-lg font-medium focus:border-[#00f0ff] focus:ring-2 focus:ring-[#00f0ff]/20 focus:outline-none text-white tracking-wide transition-all placeholder:text-gray-650 shadow-inner" 
+            class="w-full bg-gray-950/90 border border-gray-800 rounded-2xl pl-5 pr-14 py-4 text-center text-lg font-medium focus:border-[#ffb3d9] focus:ring-2 focus:ring-[#ffb3d9]/20 focus:outline-none text-white tracking-wide transition-all placeholder:text-gray-650 shadow-inner" 
             required
           >
           <button 
@@ -338,15 +338,15 @@
 
         <!-- BOTÓN DE ACCESO CIRCULAR TRANSLÚCIDO -->
         <div class="flex justify-center pt-2">
-          <button type="submit" class="w-20 h-20 rounded-full bg-gradient-to-tr from-[#00f0ff]/10 via-[#7000ff]/15 to-[#00f0ff]/25 backdrop-blur-md border border-[#00f0ff]/40 hover:border-[#00f0ff]/80 hover:scale-110 active:scale-95 text-[#00f0ff] flex items-center justify-center shadow-[0_0_15px_rgba(0,240,255,0.15)] hover:shadow-[0_0_25px_rgba(0,240,255,0.4)] transition-all duration-300 group focus:outline-none" title="Desbloquear Bóveda">
-            <i data-lucide="arrow-right" class="w-8 h-8 group-hover:translate-x-1.5 transition-transform filter drop-shadow-[0_0_8px_rgba(0,240,255,0.8)]"></i>
+          <button type="submit" class="w-20 h-20 rounded-full bg-gradient-to-tr from-[#ffb3d9]/10 via-[#ff66b2]/15 to-[#ffb3d9]/25 backdrop-blur-md border border-[#ffb3d9]/40 hover:border-[#ffb3d9]/80 hover:scale-110 active:scale-95 text-[#ffb3d9] flex items-center justify-center shadow-[0_0_15px_rgba(255,179,217,0.15)] hover:shadow-[0_0_25px_rgba(255,179,217,0.4)] transition-all duration-300 group focus:outline-none" title="Desbloquear Bóveda">
+            <i data-lucide="arrow-right" class="w-8 h-8 group-hover:translate-x-1.5 transition-transform filter drop-shadow-[0_0_8px_rgba(255,179,217,0.8)]"></i>
           </button>
         </div>
       </form>
 
       <div id="biometric-login-container" class="hidden mt-6 pt-4 border-t border-gray-900/50">
-        <button type="button" id="btn-biometric-login" class="w-full flex items-center justify-center gap-2 py-3 bg-gray-950/85 border border-gray-800 hover:border-[#00f0ff]/40 hover:bg-gray-900 rounded-2xl text-sm font-semibold text-gray-300 transition-all active:scale-[0.98]">
-          <i data-lucide="fingerprint" class="w-5 h-5 text-[#00f0ff] filter drop-shadow-[0_0_8px_rgba(0,240,255,0.4)]"></i>
+        <button type="button" id="btn-biometric-login" class="w-full flex items-center justify-center gap-2 py-3 bg-gray-950/85 border border-gray-800 hover:border-[#ffb3d9]/40 hover:bg-gray-900 rounded-2xl text-sm font-semibold text-gray-300 transition-all active:scale-[0.98]">
+          <i data-lucide="fingerprint" class="w-5 h-5 text-[#ffb3d9] filter drop-shadow-[0_0_8px_rgba(255,179,217,0.4)]"></i>
           <span>Acceder con Face ID / Touch ID</span>
         </button>
       </div>
@@ -357,13 +357,13 @@
   <div id="app-container" class="max-w-6xl mx-auto space-y-8 hidden animate-fade-in">
     
     <!-- HEADER -->
-    <header class="relative z-40 flex items-center justify-between gap-4 mb-8 glass-card p-4 md:p-6 rounded-2xl border border-[#7000ff]/15">
+    <header class="relative z-40 flex items-center justify-between gap-4 mb-8 glass-card p-4 md:p-6 rounded-2xl border border-[#ff66b2]/15">
       <div class="flex items-center gap-4">
-        <div class="p-3 bg-[#7000ff]/15 text-[#00f0ff] rounded-xl border border-[#00f0ff]/20 shadow-md shadow-[#00f0ff]/5">
-          <i data-lucide="wallet-cards" class="w-7 h-7 filter drop-shadow-[0_0_5px_rgba(0,240,255,0.5)]"></i>
+        <div class="p-3 bg-[#ff66b2]/15 text-[#ffb3d9] rounded-xl border border-[#ffb3d9]/20 shadow-md shadow-[#ffb3d9]/5">
+          <i data-lucide="wallet-cards" class="w-7 h-7 filter drop-shadow-[0_0_5px_rgba(255,179,217,0.5)]"></i>
         </div>
         <div>
-          <h1 class="text-2xl md:text-3xl font-extrabold bg-gradient-to-r from-[#00f0ff] via-[#ff007f] to-[#7000ff] bg-clip-text text-transparent">
+          <h1 class="text-2xl md:text-3xl font-extrabold bg-gradient-to-r from-[#ffb3d9] via-[#ff1a75] to-[#ff66b2] bg-clip-text text-transparent">
             Cuentas Personales
           </h1>
           <p class="text-gray-400 text-xs tracking-wider uppercase font-semibold">Dashboard Patrimonial</p>
@@ -373,38 +373,38 @@
       <!-- CONTROLES Y PERFIL DE USUARIO -->
       <div class="flex items-center gap-3">
         <!-- BOTÓN PARA MODO CLARO / OSCURO -->
-        <button id="theme-toggle" class="p-2.5 md:p-3 bg-gray-950/80 border border-gray-800 rounded-xl hover:border-[#00f0ff]/30 transition-colors text-gray-400 hover:text-[#00f0ff]" title="Alternar tema">
+        <button id="theme-toggle" class="p-2.5 md:p-3 bg-gray-950/80 border border-gray-800 rounded-xl hover:border-[#ffb3d9]/30 transition-colors text-gray-400 hover:text-[#ffb3d9]" title="Alternar tema">
           <i data-lucide="sun" id="theme-icon" class="w-5 h-5"></i>
         </button>
 
         <!-- DROPDOWN DE USUARIO EN LUGAR DE BOTÓN SIMPLE -->
         <div class="relative">
-          <button id="profile-dropdown-btn" class="flex items-center gap-2.5 p-1.5 bg-gray-950/80 border border-gray-800 hover:border-[#7000ff]/40 rounded-xl transition-all focus:outline-none">
+          <button id="profile-dropdown-btn" class="flex items-center gap-2.5 p-1.5 bg-gray-950/80 border border-gray-800 hover:border-[#ff66b2]/40 rounded-xl transition-all focus:outline-none">
             <!-- Avatar por defecto o subido -->
-            <img id="user-avatar-img" src="https://placehold.co/100x100/7000ff/ffffff?text=ML" class="w-8 h-8 rounded-lg object-cover border border-[#7000ff]/30 shadow-md" alt="Avatar">
+            <img id="user-avatar-img" src="https://placehold.co/100x100/ff66b2/ffffff?text=ML" class="w-8 h-8 rounded-lg object-cover border border-[#ff66b2]/30 shadow-md" alt="Avatar">
             <span id="user-display-name" class="hidden md:inline text-sm font-semibold text-gray-250 pr-2">Mónica López</span>
             <i data-lucide="chevron-down" class="w-4 h-4 text-gray-400 mr-1"></i>
           </button>
 
           <!-- Menú Flotante de Usuario -->
-          <div id="profile-dropdown-menu" class="hidden absolute right-0 mt-2 w-56 glass-card rounded-2xl border border-[#7000ff]/25 shadow-[0_10px_30px_rgba(0,0,0,0.5)] z-[60] overflow-hidden animate-pop">
+          <div id="profile-dropdown-menu" class="hidden absolute right-0 mt-2 w-56 glass-card rounded-2xl border border-[#ff66b2]/25 shadow-[0_10px_30px_rgba(0,0,0,0.5)] z-[60] overflow-hidden animate-pop">
             <div class="p-4 border-b border-gray-800/80 text-center">
               <span class="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Mi Perfil</span>
               <div class="relative inline-block group cursor-pointer mb-2" onclick="openProfileSettingsModal()">
-                <img id="menu-avatar-img" src="https://placehold.co/100x100/7000ff/ffffff?text=ML" class="w-16 h-16 rounded-2xl object-cover border-2 border-[#7000ff]/40 mx-auto shadow-lg" alt="Avatar">
+                <img id="menu-avatar-img" src="https://placehold.co/100x100/ff66b2/ffffff?text=ML" class="w-16 h-16 rounded-2xl object-cover border-2 border-[#ff66b2]/40 mx-auto shadow-lg" alt="Avatar">
                 <div class="absolute inset-0 bg-black/60 rounded-2xl flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
                   <i data-lucide="camera" class="w-5 h-5 text-white"></i>
                 </div>
               </div>
               <p id="menu-user-name" class="text-sm font-bold text-white truncate">Mónica López</p>
-              <span class="text-[10px] text-[#00f0ff] font-semibold tracking-widest uppercase">Clave Maestra Activa</span>
+              <span class="text-[10px] text-[#ffb3d9] font-semibold tracking-widest uppercase">Clave Maestra Activa</span>
             </div>
             <div class="p-1">
-              <button onclick="openProfileSettingsModal()" class="w-full flex items-center gap-2 px-3 py-2.5 text-xs font-semibold text-gray-300 hover:text-white hover:bg-[#7000ff]/10 rounded-xl transition-colors">
-                <i data-lucide="user" class="w-4 h-4 text-[#7000ff]"></i> Ajustes de Perfil
+              <button onclick="openProfileSettingsModal()" class="w-full flex items-center gap-2 px-3 py-2.5 text-xs font-semibold text-gray-300 hover:text-white hover:bg-[#ff66b2]/10 rounded-xl transition-colors">
+                <i data-lucide="user" class="w-4 h-4 text-[#ff66b2]"></i> Ajustes de Perfil
               </button>
-              <button onclick="openPasswordSettingsModal()" class="w-full flex items-center gap-2 px-3 py-2.5 text-xs font-semibold text-gray-300 hover:text-white hover:bg-[#ff007f]/10 rounded-xl transition-colors">
-                <i data-lucide="key" class="w-4 h-4 text-[#ff007f]"></i> Contraseña de Bóveda
+              <button onclick="openPasswordSettingsModal()" class="w-full flex items-center gap-2 px-3 py-2.5 text-xs font-semibold text-gray-300 hover:text-white hover:bg-[#ff1a75]/10 rounded-xl transition-colors">
+                <i data-lucide="key" class="w-4 h-4 text-[#ff1a75]"></i> Contraseña de Bóveda
               </button>
               <div class="h-px bg-gray-800/80 my-1"></div>
               <button id="logout-btn" class="w-full flex items-center gap-2 px-3 py-2.5 text-xs font-bold text-rose-450 text-rose-400 hover:text-white hover:bg-rose-500/15 rounded-xl transition-colors">
@@ -422,20 +422,20 @@
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
         
         <!-- CALENDARIO -->
-        <section class="lg:col-span-2 glass-card rounded-2xl border border-[#7000ff]/15 p-6 shadow-xl hover:shadow-[0_10px_40px_rgba(112,0,255,0.08)]">
+        <section class="lg:col-span-2 glass-card rounded-2xl border border-[#ff66b2]/15 p-6 shadow-xl hover:shadow-[0_10px_40px_rgba(255,102,178,0.08)]">
           <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
             
             <div class="flex items-center gap-3">
               <h2 class="text-xl font-bold flex items-center gap-2 text-white">
-                <span class="w-2.5 h-2.5 rounded-full bg-[#00f0ff] animate-ping mr-1"></span> Calendario de Actividades
+                <span class="w-2.5 h-2.5 rounded-full bg-[#ffb3d9] animate-ping mr-1"></span> Calendario de Actividades
               </h2>
-              <button id="btn-today" class="px-3 py-1 bg-[#7000ff]/15 text-[#00f0ff] border border-[#00f0ff]/30 hover:bg-[#7000ff]/25 rounded-lg text-xs font-bold transition-colors cursor-pointer shadow-sm">
+              <button id="btn-today" class="px-3 py-1 bg-[#ff66b2]/15 text-[#ffb3d9] border border-[#ffb3d9]/30 hover:bg-[#ff66b2]/25 rounded-lg text-xs font-bold transition-colors cursor-pointer shadow-sm">
                 Hoy
               </button>
             </div>
 
             <div class="flex items-center gap-1 sm:gap-2 bg-gray-950/80 rounded-lg p-1 border border-gray-800">
-              <button id="btn-prev-month" class="p-1 sm:p-2 hover:bg-gray-800 rounded-md transition-colors text-gray-400 hover:text-[#00f0ff]">
+              <button id="btn-prev-month" class="p-1 sm:p-2 hover:bg-gray-800 rounded-md transition-colors text-gray-400 hover:text-[#ffb3d9]">
                 <i data-lucide="chevron-left" class="w-5 h-5"></i>
               </button>
               
@@ -460,7 +460,7 @@
                 </select>
               </div>
 
-              <button id="btn-next-month" class="p-1 sm:p-2 hover:bg-gray-800 rounded-md transition-colors text-gray-400 hover:text-[#00f0ff]">
+              <button id="btn-next-month" class="p-1 sm:p-2 hover:bg-gray-800 rounded-md transition-colors text-gray-400 hover:text-[#ffb3d9]">
                 <i data-lucide="chevron-right" class="w-5 h-5"></i>
               </button>
             </div>
@@ -477,24 +477,24 @@
         </section>
 
         <!-- RESUMEN MENSUAL Y GRÁFICA -->
-        <section class="glass-card rounded-2xl border border-[#7000ff]/15 p-6 shadow-xl flex flex-col hover:shadow-[0_10px_40px_rgba(112,0,255,0.08)] relative">
+        <section class="glass-card rounded-2xl border border-[#ff66b2]/15 p-6 shadow-xl flex flex-col hover:shadow-[0_10px_40px_rgba(255,102,178,0.08)] relative">
           <div class="flex justify-between items-center mb-6">
             <h2 class="text-xl font-bold text-white">Resumen Mensual</h2>
             <div class="flex items-center gap-2">
               <button id="btn-print" class="flex items-center gap-2 px-3 py-1.5 bg-gray-950/80 hover:bg-gray-900 border border-gray-800 rounded-lg text-xs font-semibold transition-colors cursor-pointer text-gray-300 print:hidden" title="Imprimir pantalla">
-                <i data-lucide="printer" class="w-4 h-4 text-[#ff007f]"></i>
+                <i data-lucide="printer" class="w-4 h-4 text-[#ff1a75]"></i>
               </button>
               <div class="relative">
                 <button id="btn-export-menu" class="flex items-center gap-2 px-3 py-1.5 bg-gray-950/80 hover:bg-gray-900 border border-gray-800 rounded-lg text-xs font-semibold transition-colors cursor-pointer text-gray-300 print:hidden">
-                  <i data-lucide="download" class="w-4 h-4 text-[#00f0ff]"></i> Exportar
+                  <i data-lucide="download" class="w-4 h-4 text-[#ffb3d9]"></i> Exportar
                 </button>
                 <!-- Dropdown Exportar -->
-                <div id="export-dropdown" class="hidden absolute right-0 mt-2 w-32 glass-card rounded-lg shadow-xl z-10 overflow-hidden border border-[#7000ff]/20 animate-pop">
+                <div id="export-dropdown" class="hidden absolute right-0 mt-2 w-32 glass-card rounded-lg shadow-xl z-10 overflow-hidden border border-[#ff66b2]/20 animate-pop">
                   <button id="btn-export-pdf" class="w-full text-left px-4 py-2 text-xs text-gray-300 hover:bg-gray-950 hover:text-white flex items-center gap-2 border-b border-gray-800/80 transition-colors">
-                    <i data-lucide="file-text" class="w-4 h-4 text-[#ff007f]"></i> PDF
+                    <i data-lucide="file-text" class="w-4 h-4 text-[#ff1a75]"></i> PDF
                   </button>
                   <button id="btn-export-excel" class="w-full text-left px-4 py-2 text-xs text-gray-300 hover:bg-gray-950 hover:text-white flex items-center gap-2 transition-colors">
-                    <i data-lucide="sheet" class="w-4 h-4 text-[#00f0ff]"></i> Excel
+                    <i data-lucide="sheet" class="w-4 h-4 text-[#ffb3d9]"></i> Excel
                   </button>
                 </div>
               </div>
@@ -517,15 +517,15 @@
       </div>
 
       <!-- SECCIÓN COLAPSABLE DE MIS CUENTAS Y CARTERAS -->
-      <section id="accounts-section" class="glass-card rounded-2xl border border-[#7000ff]/15 p-6 shadow-xl transition-all duration-300">
+      <section id="accounts-section" class="glass-card rounded-2xl border border-[#ff66b2]/15 p-6 shadow-xl transition-all duration-300">
         <!-- HEADER PLEGABLE -->
         <div id="toggle-accounts-btn" class="flex justify-between items-center cursor-pointer group">
           <div class="flex items-center gap-3">
-            <i data-lucide="wallet" class="w-5 h-5 text-[#00f0ff] filter drop-shadow-[0_0_5px_rgba(0,240,255,0.4)]"></i>
-            <h2 class="text-xl font-bold group-hover:text-[#00f0ff] transition-colors text-white">Mis Cuentas y Carteras</h2>
+            <i data-lucide="wallet" class="w-5 h-5 text-[#ffb3d9] filter drop-shadow-[0_0_5px_rgba(255,179,217,0.4)]"></i>
+            <h2 class="text-xl font-bold group-hover:text-[#ffb3d9] transition-colors text-white">Mis Cuentas y Carteras</h2>
           </div>
           <div class="flex items-center gap-3">
-            <button onclick="event.stopPropagation(); openAccountManager()" class="flex items-center gap-1.5 px-3 py-1.5 bg-[#7000ff]/15 text-[#00f0ff] border border-[#00f0ff]/30 hover:bg-[#7000ff]/25 rounded-xl text-xs font-bold transition-colors cursor-pointer shadow-sm">
+            <button onclick="event.stopPropagation(); openAccountManager()" class="flex items-center gap-1.5 px-3 py-1.5 bg-[#ff66b2]/15 text-[#ffb3d9] border border-[#ffb3d9]/30 hover:bg-[#ff66b2]/25 rounded-xl text-xs font-bold transition-colors cursor-pointer shadow-sm">
               <i data-lucide="settings" class="w-3.5 h-3.5"></i> Gestionar
             </button>
             <button class="p-2 bg-gray-950/80 hover:bg-gray-900 border border-gray-800 rounded-lg transition-colors text-gray-400 group-hover:text-white">
@@ -539,9 +539,9 @@
           
           <!-- RESUMEN DE PATRIMONIO Y GRÁFICA -->
           <div class="mb-6 grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div class="md:col-span-1 bg-gray-900/40 p-6 rounded-2xl border border-[#00f0ff]/20 flex flex-col justify-center items-center shadow-lg relative overflow-hidden group hover:border-[#00f0ff]/50 transition-colors duration-300">
-              <div class="absolute inset-0 bg-gradient-to-br from-[#00f0ff]/5 to-[#7000ff]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-              <span class="text-xs text-[#00f0ff] uppercase tracking-widest font-bold mb-2 z-10">Patrimonio Total</span>
+            <div class="md:col-span-1 bg-gray-900/40 p-6 rounded-2xl border border-[#ffb3d9]/20 flex flex-col justify-center items-center shadow-lg relative overflow-hidden group hover:border-[#ffb3d9]/50 transition-colors duration-300">
+              <div class="absolute inset-0 bg-gradient-to-br from-[#ffb3d9]/5 to-[#ff66b2]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              <span class="text-xs text-[#ffb3d9] uppercase tracking-widest font-bold mb-2 z-10">Patrimonio Total</span>
               <p id="total-net-worth" class="text-3xl lg:text-4xl font-black text-white z-10 tracking-tight">$0.00</p>
             </div>
             <div class="md:col-span-2 bg-gray-900/40 p-4 rounded-2xl border border-gray-800 shadow-lg h-56 relative">
@@ -556,12 +556,12 @@
       </section>
 
       <!-- SECCIÓN INFERIOR: CONSULTA HISTÓRICA Y BÚSQUEDA -->
-      <section id="historical-section" class="glass-card rounded-2xl border border-[#7000ff]/15 p-6 shadow-xl transition-all">
+      <section id="historical-section" class="glass-card rounded-2xl border border-[#ff66b2]/15 p-6 shadow-xl transition-all">
         <!-- HEADER PLEGABLE -->
         <div id="toggle-history-btn" class="flex justify-between items-center cursor-pointer group">
           <div class="flex items-center gap-3">
-            <i data-lucide="history" class="w-5 h-5 text-[#ff007f] filter drop-shadow-[0_0_5px_rgba(255,0,127,0.4)]"></i>
-            <h2 class="text-xl font-bold group-hover:text-[#ff007f] transition-colors text-white">Consultas y Totales Históricos</h2>
+            <i data-lucide="history" class="w-5 h-5 text-[#ff1a75] filter drop-shadow-[0_0_5px_rgba(255,26,117,0.4)]"></i>
+            <h2 class="text-xl font-bold group-hover:text-[#ff1a75] transition-colors text-white">Consultas y Totales Históricos</h2>
           </div>
           <button class="p-2 bg-gray-950/80 hover:bg-gray-900 border border-gray-800 rounded-lg transition-colors text-gray-400 group-hover:text-white">
             <i data-lucide="chevron-down" id="history-chevron" class="w-5 h-5 transition-transform duration-300"></i>
@@ -573,12 +573,12 @@
           <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
             
             <div class="flex flex-wrap items-center gap-2 w-full md:w-auto">
-              <select id="search-year" class="bg-gray-950 border border-gray-800 rounded-lg px-4 py-2 text-sm focus:border-[#7000ff] focus:outline-none text-white cursor-pointer hover:bg-gray-900 transition-colors">
+              <select id="search-year" class="bg-gray-950 border border-gray-800 rounded-lg px-4 py-2 text-sm focus:border-[#ff66b2] focus:outline-none text-white cursor-pointer hover:bg-gray-900 transition-colors">
                 <!-- Llenado dinámico -->
               </select>
               
               <!-- Selector de Mes -->
-              <select id="search-month" class="bg-gray-950 border border-gray-800 rounded-lg px-4 py-2 text-sm focus:border-[#7000ff] focus:outline-none text-white cursor-pointer hover:bg-gray-900 transition-colors">
+              <select id="search-month" class="bg-gray-950 border border-gray-800 rounded-lg px-4 py-2 text-sm focus:border-[#ff66b2] focus:outline-none text-white cursor-pointer hover:bg-gray-900 transition-colors">
                 <option value="all">Todo el año</option>
                 <option value="0">Enero</option>
                 <option value="1">Febrero</option>
@@ -595,7 +595,7 @@
               </select>
               
               <!-- Selector de Cuenta para filtrado -->
-              <select id="search-account" class="bg-gray-950 border border-gray-800 rounded-lg px-4 py-2 text-sm focus:border-[#7000ff] focus:outline-none text-white cursor-pointer hover:bg-gray-900 transition-colors">
+              <select id="search-account" class="bg-gray-950 border border-gray-800 rounded-lg px-4 py-2 text-sm focus:border-[#ff66b2] focus:outline-none text-white cursor-pointer hover:bg-gray-900 transition-colors">
                 <option value="all">Todas las cuentas</option>
                 <!-- Cuentas inyectadas dinámicamente -->
               </select>
@@ -607,7 +607,7 @@
                 type="text" 
                 id="search-input"
                 placeholder="Buscar concepto o monto..."
-                class="w-full bg-gray-950 border border-gray-800 rounded-lg pl-10 pr-4 py-2 text-sm focus:border-[#00f0ff] focus:outline-none text-white"
+                class="w-full bg-gray-950 border border-gray-800 rounded-lg pl-10 pr-4 py-2 text-sm focus:border-[#ffb3d9] focus:outline-none text-white"
               />
             </div>
           </div>
@@ -646,7 +646,7 @@
     <div class="bg-gray-950/95 backdrop-blur-xl rounded-3xl shadow-2xl border border-white/10 w-full max-w-sm overflow-hidden transform scale-95 transition-all duration-300" id="hover-images-content">
       <div class="flex justify-between items-center p-6 border-b border-gray-800">
         <h3 class="text-lg font-bold flex items-center gap-2">
-          <i data-lucide="image" class="text-[#00f0ff] w-5 h-5"></i>
+          <i data-lucide="image" class="text-[#ffb3d9] w-5 h-5"></i>
           <span class="text-white">Imágenes Flotantes</span>
         </h3>
         <button onclick="window.closeHoverImagesModal()" class="text-gray-400 hover:text-white transition-colors">
@@ -659,7 +659,7 @@
         <div class="text-center space-y-2 border border-gray-800 p-3 rounded-2xl bg-gray-900/50">
           <label class="block text-xs font-semibold text-gray-400 uppercase tracking-wider">Ingresos</label>
           <div class="relative inline-block group cursor-pointer" onclick="document.getElementById('img-input-ingreso').click()">
-            <img id="preview-img-ingreso" src="" class="w-16 h-16 rounded-xl object-cover border border-[#00f0ff]/50 mx-auto shadow-sm bg-gray-950" alt="Ingreso">
+            <img id="preview-img-ingreso" src="" class="w-16 h-16 rounded-xl object-cover border border-[#ffb3d9]/50 mx-auto shadow-sm bg-gray-950" alt="Ingreso">
             <div class="absolute inset-0 bg-black/60 rounded-xl flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
               <i data-lucide="camera" class="w-4 h-4 text-white"></i>
             </div>
@@ -671,7 +671,7 @@
         <div class="text-center space-y-2 border border-gray-800 p-3 rounded-2xl bg-gray-900/50">
           <label class="block text-xs font-semibold text-gray-400 uppercase tracking-wider">Gastos</label>
           <div class="relative inline-block group cursor-pointer" onclick="document.getElementById('img-input-gasto').click()">
-            <img id="preview-img-gasto" src="" class="w-16 h-16 rounded-xl object-cover border border-[#ff007f]/50 mx-auto shadow-sm bg-gray-950" alt="Gasto">
+            <img id="preview-img-gasto" src="" class="w-16 h-16 rounded-xl object-cover border border-[#ff1a75]/50 mx-auto shadow-sm bg-gray-950" alt="Gasto">
             <div class="absolute inset-0 bg-black/60 rounded-xl flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
               <i data-lucide="camera" class="w-4 h-4 text-white"></i>
             </div>
@@ -683,7 +683,7 @@
         <div class="text-center space-y-2 border border-gray-800 p-3 rounded-2xl bg-gray-900/50">
           <label class="block text-xs font-semibold text-gray-400 uppercase tracking-wider">Ahorros</label>
           <div class="relative inline-block group cursor-pointer" onclick="document.getElementById('img-input-ahorro').click()">
-            <img id="preview-img-ahorro" src="" class="w-16 h-16 rounded-xl object-cover border border-[#7000ff]/50 mx-auto shadow-sm bg-gray-950" alt="Ahorro">
+            <img id="preview-img-ahorro" src="" class="w-16 h-16 rounded-xl object-cover border border-[#ff66b2]/50 mx-auto shadow-sm bg-gray-950" alt="Ahorro">
             <div class="absolute inset-0 bg-black/60 rounded-xl flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
               <i data-lucide="camera" class="w-4 h-4 text-white"></i>
             </div>
@@ -691,7 +691,7 @@
           <input type="file" id="img-input-ahorro" accept="image/*" class="hidden">
         </div>
 
-        <button type="submit" class="w-full bg-gradient-to-r from-[#00f0ff] to-[#7000ff] text-white font-bold py-3.5 rounded-2xl text-xs transition-colors shadow-md mt-2">
+        <button type="submit" class="w-full bg-gradient-to-r from-[#ffb3d9] to-[#ff66b2] text-white font-bold py-3.5 rounded-2xl text-xs transition-colors shadow-md mt-2">
           Guardar Imágenes
         </button>
       </form>
@@ -704,9 +704,9 @@
       
       <div class="flex justify-between items-center p-6 border-b border-gray-800">
         <h3 class="text-lg font-bold flex items-center gap-2">
-          <i data-lucide="calendar" class="w-5 h-5 text-[#00f0ff]"></i>
+          <i data-lucide="calendar" class="w-5 h-5 text-[#ffb3d9]"></i>
           <span id="modal-title-text" class="text-white">Añadir Movimiento</span>
-          <span id="modal-date-label" class="text-xs font-semibold text-[#00f0ff] bg-[#00f0ff]/10 px-2.5 py-1 rounded-lg ml-2"></span>
+          <span id="modal-date-label" class="text-xs font-semibold text-[#ffb3d9] bg-[#ffb3d9]/10 px-2.5 py-1 rounded-lg ml-2"></span>
         </h3>
         <button id="btn-close-modal" class="text-gray-400 hover:text-white transition-colors">
           <i data-lucide="x" class="w-5 h-5"></i>
@@ -732,11 +732,11 @@
         <div class="space-y-1.5">
           <div class="flex justify-between items-center">
             <label class="block text-xs font-semibold text-gray-400 uppercase tracking-wider">Subcategoría</label>
-            <button type="button" onclick="openSubcategoryManager()" class="text-xs text-[#00f0ff] hover:text-[#00f0ff]/80 flex items-center gap-1 transition-colors">
+            <button type="button" onclick="openSubcategoryManager()" class="text-xs text-[#ffb3d9] hover:text-[#ffb3d9]/80 flex items-center gap-1 transition-colors">
               <i data-lucide="settings-2" class="w-3.5 h-3.5"></i> Gestionar
             </button>
           </div>
-          <select id="form-subcategory" required class="w-full bg-gray-900 border border-gray-800 rounded-2xl px-4 py-3.5 focus:border-[#7000ff] focus:ring-1 focus:ring-[#7000ff] outline-none text-white text-sm transition-colors cursor-pointer">
+          <select id="form-subcategory" required class="w-full bg-gray-900 border border-gray-800 rounded-2xl px-4 py-3.5 focus:border-[#ff66b2] focus:ring-1 focus:ring-[#ff66b2] outline-none text-white text-sm transition-colors cursor-pointer">
             <!-- Subcategorías inyectadas dinámicamente -->
           </select>
         </div>
@@ -744,7 +744,7 @@
         <!-- Selector de Cuenta -->
         <div class="space-y-1.5">
           <label class="block text-xs font-semibold text-gray-400 uppercase tracking-wider">Cuenta / Cartera</label>
-          <select id="form-account" required class="w-full bg-gray-900 border border-gray-800 rounded-2xl px-4 py-3.5 focus:border-[#7000ff] focus:ring-1 focus:ring-[#7000ff] outline-none text-white text-sm transition-colors cursor-pointer">
+          <select id="form-account" required class="w-full bg-gray-900 border border-gray-800 rounded-2xl px-4 py-3.5 focus:border-[#ff66b2] focus:ring-1 focus:ring-[#ff66b2] outline-none text-white text-sm transition-colors cursor-pointer">
             <!-- Cuentas inyectadas dinámicamente -->
           </select>
         </div>
@@ -754,18 +754,18 @@
           <label class="block text-xs font-semibold text-gray-400 uppercase tracking-wider">Cantidad</label>
           <div class="relative">
             <span class="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 font-bold text-lg">$</span>
-            <input type="number" id="form-amount" step="0.01" required min="0" placeholder="0.00" class="w-full bg-gray-900 border border-gray-800 rounded-2xl pl-10 pr-4 py-4 focus:border-[#00f0ff] focus:ring-2 focus:ring-[#00f0ff]/10 outline-none text-xl font-bold text-white transition-colors" />
+            <input type="number" id="form-amount" step="0.01" required min="0" placeholder="0.00" class="w-full bg-gray-900 border border-gray-800 rounded-2xl pl-10 pr-4 py-4 focus:border-[#ffb3d9] focus:ring-2 focus:ring-[#ffb3d9]/10 outline-none text-xl font-bold text-white transition-colors" />
           </div>
         </div>
 
         <!-- Concepto -->
         <div class="space-y-1.5">
           <label class="block text-xs font-semibold text-gray-400 uppercase tracking-wider">Concepto / Descripción</label>
-          <input type="text" id="form-concept" required placeholder="Ej. Quincena, Despensa, Cine..." class="w-full bg-gray-900 border border-gray-800 rounded-2xl px-4 py-3.5 focus:border-[#00f0ff] focus:ring-1 focus:ring-[#00f0ff] outline-none text-white text-sm transition-colors placeholder:text-gray-600" />
+          <input type="text" id="form-concept" required placeholder="Ej. Quincena, Despensa, Cine..." class="w-full bg-gray-900 border border-gray-800 rounded-2xl px-4 py-3.5 focus:border-[#ffb3d9] focus:ring-1 focus:ring-[#ffb3d9] outline-none text-white text-sm transition-colors placeholder:text-gray-600" />
         </div>
 
         <!-- Botón Guardar -->
-        <button type="submit" id="btn-save-movement" class="w-full bg-gradient-to-r from-[#7000ff] to-[#ff007f] hover:brightness-110 text-white font-bold py-4 rounded-2xl shadow-xl transition-all active:scale-[0.98]">
+        <button type="submit" id="btn-save-movement" class="w-full bg-gradient-to-r from-[#ff66b2] to-[#ff1a75] hover:brightness-110 text-white font-bold py-4 rounded-2xl shadow-xl transition-all active:scale-[0.98]">
           Guardar Movimiento
         </button>
       </form>
@@ -777,7 +777,7 @@
     <div class="bg-gray-950/95 backdrop-blur-xl rounded-3xl shadow-2xl border border-white/10 w-full max-w-md overflow-hidden transform scale-95 transition-all duration-300" id="accounts-modal-content">
       <div class="flex justify-between items-center p-6 border-b border-gray-800">
         <h3 class="text-lg font-bold flex items-center gap-2">
-          <i data-lucide="wallet" class="text-[#00f0ff] w-5 h-5"></i>
+          <i data-lucide="wallet" class="text-[#ffb3d9] w-5 h-5"></i>
           <span class="text-white">Gestionar Cuentas</span>
         </h3>
         <button onclick="closeAccountManager()" class="text-gray-400 hover:text-white transition-colors">
@@ -796,7 +796,7 @@
               <button type="button" onclick="applyBrandTemplate('🏦', 'BBVA')" class="px-2.5 py-1 bg-blue-900/20 text-blue-300 border border-blue-500/20 hover:bg-blue-900/40 rounded-lg text-xs font-semibold transition-colors">
                 🏦 BBVA
               </button>
-              <button type="button" onclick="applyBrandTemplate('💜', 'Nu')" class="px-2.5 py-1 bg-purple-900/20 text-purple-300 border border-purple-500/20 hover:bg-purple-900/40 rounded-lg text-xs font-semibold transition-colors">
+              <button type="button" onclick="applyBrandTemplate('💜', 'Nu')" class="px-2.5 py-1 bg-fuchsia-900/20 text-fuchsia-300 border border-fuchsia-500/20 hover:bg-fuchsia-900/40 rounded-lg text-xs font-semibold transition-colors">
                 💜 Nu
               </button>
               <button type="button" onclick="applyBrandTemplate('🧡', 'DiDi')" class="px-2.5 py-1 bg-orange-900/20 text-orange-300 border border-orange-500/20 hover:bg-orange-900/40 rounded-lg text-xs font-semibold transition-colors">
@@ -809,18 +809,18 @@
           </div>
 
           <div class="grid grid-cols-4 gap-3">
-            <input type="text" id="new-acc-emoji" placeholder="💵" required class="col-span-1 bg-gray-950 border border-gray-800 rounded-xl px-3 py-3 text-center text-lg focus:outline-none focus:border-[#7000ff] text-white">
-            <input type="text" id="new-acc-name" placeholder="Ej. MercadoLibre" required class="col-span-3 bg-gray-950 border border-gray-800 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#7000ff] text-white placeholder:text-gray-600">
+            <input type="text" id="new-acc-emoji" placeholder="💵" required class="col-span-1 bg-gray-950 border border-gray-800 rounded-xl px-3 py-3 text-center text-lg focus:outline-none focus:border-[#ff66b2] text-white">
+            <input type="text" id="new-acc-name" placeholder="Ej. MercadoLibre" required class="col-span-3 bg-gray-950 border border-gray-800 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#ff66b2] text-white placeholder:text-gray-600">
           </div>
 
           <div class="grid grid-cols-2 gap-3 pt-1">
             <div class="space-y-1">
               <label class="block text-[10px] font-bold text-gray-400 uppercase tracking-wider">Saldo Inicial ($)</label>
-              <input type="number" id="new-acc-balance" step="0.01" min="0" placeholder="0.00" class="w-full bg-gray-950 border border-gray-800 rounded-xl px-3 py-2.5 text-xs focus:outline-none focus:border-[#7000ff] text-white">
+              <input type="number" id="new-acc-balance" step="0.01" min="0" placeholder="0.00" class="w-full bg-gray-950 border border-gray-800 rounded-xl px-3 py-2.5 text-xs focus:outline-none focus:border-[#ff66b2] text-white">
             </div>
             <div class="space-y-1">
               <label class="block text-[10px] font-bold text-gray-400 uppercase tracking-wider">Fecha de Registro</label>
-              <input type="date" id="new-acc-date" class="w-full bg-gray-950 border border-gray-800 rounded-xl px-3 py-2.5 text-xs focus:outline-none focus:border-[#7000ff] text-white">
+              <input type="date" id="new-acc-date" class="w-full bg-gray-950 border border-gray-800 rounded-xl px-3 py-2.5 text-xs focus:outline-none focus:border-[#ff66b2] text-white">
             </div>
           </div>
 
@@ -829,11 +829,11 @@
             <label class="block text-[10px] font-bold text-gray-400 uppercase tracking-wider">Tipo de Cuenta</label>
             <div class="flex gap-4">
               <label class="flex items-center gap-2 cursor-pointer text-xs text-gray-300">
-                <input type="radio" name="acc-type" value="debito" checked class="accent-[#7000ff]">
+                <input type="radio" name="acc-type" value="debito" checked class="accent-[#ff66b2]">
                 <span>Débito / Regular</span>
               </label>
               <label class="flex items-center gap-2 cursor-pointer text-xs text-gray-300">
-                <input type="radio" name="acc-type" value="credito" class="accent-[#ff007f]">
+                <input type="radio" name="acc-type" value="credito" class="accent-[#ff1a75]">
                 <span>Crédito (Deuda)</span>
               </label>
             </div>
@@ -843,18 +843,18 @@
             <label class="block text-[10px] font-bold text-gray-400 uppercase tracking-wider">¿Cómo registrar el saldo inicial?</label>
             <div class="flex gap-4">
               <label class="flex items-center gap-2 cursor-pointer text-xs text-gray-300">
-                <input type="radio" name="acc-init-mode" value="preexistente" checked class="accent-[#7000ff]">
+                <input type="radio" name="acc-init-mode" value="preexistente" checked class="accent-[#ff66b2]">
                 <span>Ya lo tenía (Preexistente)</span>
               </label>
               <label class="flex items-center gap-2 cursor-pointer text-xs text-gray-300">
-                <input type="radio" name="acc-init-mode" value="ingreso" class="accent-[#7000ff]">
+                <input type="radio" name="acc-init-mode" value="ingreso" class="accent-[#ff66b2]">
                 <span>Como nuevo ingreso</span>
               </label>
             </div>
           </div>
 
           <div class="flex gap-3 pt-2">
-            <button type="submit" id="btn-save-account" class="flex-1 bg-gradient-to-r from-[#7000ff] to-[#ff007f] text-white font-bold py-2.5 rounded-xl text-xs transition-colors shadow-md">
+            <button type="submit" id="btn-save-account" class="flex-1 bg-gradient-to-r from-[#ff66b2] to-[#ff1a75] text-white font-bold py-2.5 rounded-xl text-xs transition-colors shadow-md">
               + Agregar Cuenta
             </button>
             <button type="button" id="btn-cancel-account-edit" class="hidden px-4 bg-gray-800 hover:bg-gray-700 text-gray-300 border border-gray-700 font-semibold py-2.5 rounded-xl text-xs transition-colors">
@@ -924,7 +924,7 @@
 
         <!-- Acciones -->
         <div class="flex gap-3 pt-2">
-          <button id="btn-detail-filter-history" class="flex-1 bg-gradient-to-r from-[#7000ff] to-[#ff007f] text-white font-bold py-3.5 rounded-2xl text-xs transition-all flex items-center justify-center gap-2">
+          <button id="btn-detail-filter-history" class="flex-1 bg-gradient-to-r from-[#ff66b2] to-[#ff1a75] text-white font-bold py-3.5 rounded-2xl text-xs transition-all flex items-center justify-center gap-2">
             <i data-lucide="search" class="w-4 h-4"></i> Ver Historial Completo
           </button>
           <button id="btn-detail-edit-acc" class="px-5 bg-gray-800 hover:bg-gray-700 text-gray-300 border border-gray-700 font-bold py-3.5 rounded-2xl text-xs transition-colors flex items-center justify-center gap-1.5">
@@ -940,7 +940,7 @@
     <div class="bg-gray-950/95 backdrop-blur-xl rounded-3xl shadow-2xl border border-white/10 w-full max-w-md overflow-hidden transform scale-95 transition-all duration-300" id="subcategories-modal-content">
       <div class="flex justify-between items-center p-6 border-b border-gray-800">
         <h3 class="text-lg font-semibold flex items-center gap-2">
-          <i data-lucide="tag" class="text-[#00f0ff] w-5 h-5"></i>
+          <i data-lucide="tag" class="text-[#ffb3d9] w-5 h-5"></i>
           <span class="text-white">Personalizar Subcategorías</span>
         </h3>
         <button onclick="closeSubcategoryManager()" class="text-gray-400 hover:text-white transition-colors">
@@ -954,19 +954,19 @@
           <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wider">Crear Subcategoría</h4>
           
           <div class="space-y-3">
-            <select id="new-subcat-type" class="w-full bg-gray-950 border border-gray-850 rounded-xl px-3.5 py-3 text-xs focus:outline-none focus:border-[#7000ff] text-white cursor-pointer">
+            <select id="new-subcat-type" class="w-full bg-gray-950 border border-gray-850 rounded-xl px-3.5 py-3 text-xs focus:outline-none focus:border-[#ff66b2] text-white cursor-pointer">
               <option value="ingreso">Para Ingresos (📈)</option>
               <option value="gasto" selected>Para Gastos (📉)</option>
               <option value="ahorro">Para Ahorros (💰)</option>
             </select>
             
             <div class="grid grid-cols-4 gap-3">
-              <input type="text" id="new-subcat-emoji" placeholder="🍔" required class="col-span-1 bg-gray-950 border border-gray-850 rounded-xl px-3 py-3 text-center text-lg focus:outline-none focus:border-[#7000ff] text-white">
-              <input type="text" id="new-subcat-name" placeholder="Ej. Comida, Ropa..." required class="col-span-3 bg-gray-950 border border-gray-850 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#7000ff] text-white placeholder:text-gray-600">
+              <input type="text" id="new-subcat-emoji" placeholder="🍔" required class="col-span-1 bg-gray-950 border border-gray-850 rounded-xl px-3 py-3 text-center text-lg focus:outline-none focus:border-[#ff66b2] text-white">
+              <input type="text" id="new-subcat-name" placeholder="Ej. Comida, Ropa..." required class="col-span-3 bg-gray-950 border border-gray-850 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#ff66b2] text-white placeholder:text-gray-600">
             </div>
           </div>
 
-          <button type="submit" class="w-full bg-gradient-to-r from-[#00f0ff] to-[#7000ff] text-white font-bold py-3 rounded-xl text-xs transition-colors shadow-md">
+          <button type="submit" class="w-full bg-gradient-to-r from-[#ffb3d9] to-[#ff66b2] text-white font-bold py-3 rounded-xl text-xs transition-colors shadow-md">
             + Agregar Subcategoría
           </button>
         </form>
@@ -975,7 +975,7 @@
         <div class="space-y-3">
           <div class="flex justify-between items-center">
             <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wider">Lista de Subcategorías</h4>
-            <select id="subcat-filter" class="bg-transparent border-none text-xs text-[#00f0ff] focus:outline-none cursor-pointer font-bold hover:text-[#00f0ff]/80 transition-colors">
+            <select id="subcat-filter" class="bg-transparent border-none text-xs text-[#ffb3d9] focus:outline-none cursor-pointer font-bold hover:text-[#ffb3d9]/80 transition-colors">
               <option value="all" class="bg-gray-900 text-white">Ver todas</option>
               <option value="ingreso" class="bg-gray-900 text-white">Ingresos</option>
               <option value="gasto" class="bg-gray-900 text-white">Gastos</option>
@@ -995,7 +995,7 @@
     <div class="bg-gray-950/95 backdrop-blur-xl rounded-3xl shadow-2xl border border-white/10 w-full max-w-sm overflow-hidden transform scale-95 transition-all duration-300" id="profile-settings-content">
       <div class="flex justify-between items-center p-6 border-b border-gray-800">
         <h3 class="text-lg font-bold flex items-center gap-2">
-          <i data-lucide="user" class="text-[#7000ff] w-5 h-5"></i>
+          <i data-lucide="user" class="text-[#ff66b2] w-5 h-5"></i>
           <span class="text-white">Perfil de Usuario</span>
         </h3>
         <button onclick="closeProfileSettingsModal()" class="text-gray-400 hover:text-white transition-colors">
@@ -1008,7 +1008,7 @@
         <div class="text-center space-y-2">
           <label class="block text-xs font-semibold text-gray-400 uppercase tracking-wider">Foto de Perfil</label>
           <div class="relative inline-block group cursor-pointer" onclick="document.getElementById('avatar-input').click()">
-            <img id="settings-avatar-preview" src="https://placehold.co/100x100/7000ff/ffffff?text=ML" class="w-20 h-20 rounded-2xl object-cover border-2 border-[#7000ff] mx-auto shadow-lg" alt="Previsualizar">
+            <img id="settings-avatar-preview" src="https://placehold.co/100x100/ff66b2/ffffff?text=ML" class="w-20 h-20 rounded-2xl object-cover border-2 border-[#ff66b2] mx-auto shadow-lg" alt="Previsualizar">
             <div class="absolute inset-0 bg-black/60 rounded-2xl flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
               <i data-lucide="camera" class="w-5 h-5 text-white"></i>
             </div>
@@ -1020,10 +1020,10 @@
         <!-- Modificar Nombre -->
         <div class="space-y-1.5">
           <label class="block text-xs font-semibold text-gray-400 uppercase tracking-wider">Nombre del Propietario</label>
-          <input type="text" id="settings-username" required placeholder="Mónica López" class="w-full bg-gray-900 border border-gray-800 rounded-2xl px-4 py-3 focus:border-[#7000ff] outline-none text-white text-sm" />
+          <input type="text" id="settings-username" required placeholder="Mónica López" class="w-full bg-gray-900 border border-gray-800 rounded-2xl px-4 py-3 focus:border-[#ff66b2] outline-none text-white text-sm" />
         </div>
 
-        <button type="submit" class="w-full bg-gradient-to-r from-[#7000ff] to-[#ff007f] text-white font-bold py-3.5 rounded-2xl text-xs transition-colors shadow-md">
+        <button type="submit" class="w-full bg-gradient-to-r from-[#ff66b2] to-[#ff1a75] text-white font-bold py-3.5 rounded-2xl text-xs transition-colors shadow-md">
           Guardar Cambios
         </button>
       </form>
@@ -1035,7 +1035,7 @@
     <div class="bg-gray-950/95 backdrop-blur-xl rounded-3xl shadow-2xl border border-white/10 w-full max-w-sm overflow-hidden transform scale-95 transition-all duration-300" id="password-settings-content">
       <div class="flex justify-between items-center p-6 border-b border-gray-800">
         <h3 class="text-lg font-bold flex items-center gap-2">
-          <i data-lucide="key" class="text-[#ff007f] w-5 h-5"></i>
+          <i data-lucide="key" class="text-[#ff1a75] w-5 h-5"></i>
           <span class="text-white">Contraseña y Seguridad</span>
         </h3>
         <button onclick="closePasswordSettingsModal()" class="text-gray-400 hover:text-white transition-colors">
@@ -1047,15 +1047,15 @@
         <!-- Password Actual -->
         <div class="space-y-1.5">
           <label class="block text-xs font-semibold text-gray-400 uppercase tracking-wider">Cambiar Contraseña</label>
-          <input type="password" id="settings-current-pwd" required placeholder="Contraseña Actual" class="w-full bg-gray-950 border border-gray-800 rounded-2xl px-4 py-3 focus:border-[#7000ff] outline-none text-white text-sm" />
+          <input type="password" id="settings-current-pwd" required placeholder="Contraseña Actual" class="w-full bg-gray-950 border border-gray-800 rounded-2xl px-4 py-3 focus:border-[#ff66b2] outline-none text-white text-sm" />
         </div>
         <!-- Password Nueva -->
         <div class="space-y-1.5">
-          <input type="password" id="settings-new-pwd" required placeholder="Ingresa clave nueva" class="w-full bg-gray-950 border border-gray-800 rounded-2xl px-4 py-3 focus:border-[#7000ff] outline-none text-white text-sm" />
+          <input type="password" id="settings-new-pwd" required placeholder="Ingresa clave nueva" class="w-full bg-gray-950 border border-gray-800 rounded-2xl px-4 py-3 focus:border-[#ff66b2] outline-none text-white text-sm" />
         </div>
         <!-- Confirmar Password Nueva -->
         <div class="space-y-1.5">
-          <input type="password" id="settings-confirm-pwd" required placeholder="Repite la clave nueva" class="w-full bg-gray-950 border border-gray-800 rounded-2xl px-4 py-3 focus:border-[#7000ff] outline-none text-white text-sm" />
+          <input type="password" id="settings-confirm-pwd" required placeholder="Repite la clave nueva" class="w-full bg-gray-950 border border-gray-800 rounded-2xl px-4 py-3 focus:border-[#ff66b2] outline-none text-white text-sm" />
         </div>
 
         <div id="password-settings-error" class="text-rose-500 text-xs font-medium flex items-center gap-2 bg-rose-500/10 py-2.5 px-3 rounded-xl border border-rose-500/20 hidden">
@@ -1063,7 +1063,7 @@
           <span id="password-settings-error-text">Las contraseñas no coinciden.</span>
         </div>
 
-        <button type="submit" class="w-full bg-gradient-to-r from-[#ff007f] to-[#7000ff] text-white font-bold py-3.5 rounded-2xl text-xs transition-colors shadow-md">
+        <button type="submit" class="w-full bg-gradient-to-r from-[#ff1a75] to-[#ff66b2] text-white font-bold py-3.5 rounded-2xl text-xs transition-colors shadow-md">
           Actualizar Clave
         </button>
       </form>
@@ -1072,7 +1072,7 @@
         <div class="h-px w-full bg-gray-800/80 my-4"></div>
         <label class="block text-xs font-semibold text-gray-400 uppercase tracking-wider">Acceso Rápido Biométrico</label>
         <button type="button" id="btn-toggle-biometrics" class="w-full flex items-center justify-center gap-2 py-3 bg-gray-950 hover:bg-gray-900 text-gray-300 rounded-2xl border border-gray-800 text-xs font-semibold transition-colors shadow-sm">
-          <i data-lucide="fingerprint" class="w-4 h-4 text-[#00f0ff]"></i>
+          <i data-lucide="fingerprint" class="w-4 h-4 text-[#ffb3d9]"></i>
           <span id="biometrics-btn-text">Cargando soporte...</span>
         </button>
         <p class="text-[10px] text-gray-500 text-center">Permite desbloquear tu bóveda de forma instantánea usando Face ID o Touch ID en este dispositivo.</p>
@@ -1084,7 +1084,7 @@
   <div id="confirm-modal" class="fixed inset-0 bg-black/70 backdrop-blur-md flex items-center justify-center p-4 z-[120] hidden opacity-0 transition-all duration-300">
     <div class="bg-gray-950/95 backdrop-blur-xl rounded-3xl shadow-2xl border border-white/10 w-full max-w-sm overflow-hidden transform scale-95 transition-all duration-300" id="confirm-content">
       <div class="p-6 text-center space-y-4">
-        <div id="confirm-icon-box" class="inline-flex p-3 bg-[#00f0ff]/10 text-[#00f0ff] rounded-2xl border border-[#00f0ff]/20">
+        <div id="confirm-icon-box" class="inline-flex p-3 bg-[#ffb3d9]/10 text-[#ffb3d9] rounded-2xl border border-[#ffb3d9]/20">
           <i id="confirm-icon" data-lucide="check-circle" class="w-6 h-6 animate-pulse"></i>
         </div>
         <h3 id="confirm-title" class="text-lg font-bold text-white">Aviso</h3>
@@ -1281,9 +1281,9 @@
     ];
 
     const CATEGORIES = {
-      ingreso: { label: 'Ingreso', emoji: '📈', color: '#00f0ff', bgClass: 'bg-cyan-500/10', textClass: 'text-cyan-400', borderClass: 'border-cyan-500/50' },
-      gasto: { label: 'Gasto', emoji: '📉', color: '#ff007f', bgClass: 'bg-pink-500/10', textClass: 'text-pink-400', borderClass: 'border-pink-500/50' },
-      ahorro: { label: 'Ahorro', emoji: '💰', color: '#7000ff', bgClass: 'bg-purple-500/10', textClass: 'text-purple-400', borderClass: 'border-purple-500/50' }
+      ingreso: { label: 'Ingreso', emoji: '📈', color: '#ffb3d9', bgClass: 'bg-pink-500/10', textClass: 'text-pink-400', borderClass: 'border-pink-500/50' },
+      gasto: { label: 'Gasto', emoji: '📉', color: '#ff1a75', bgClass: 'bg-rose-500/10', textClass: 'text-rose-400', borderClass: 'border-rose-500/50' },
+      ahorro: { label: 'Ahorro', emoji: '💰', color: '#ff66b2', bgClass: 'bg-fuchsia-500/10', textClass: 'text-fuchsia-400', borderClass: 'border-fuchsia-500/50' }
     };
 
     const yearSelect = document.getElementById('year-select');
@@ -1421,7 +1421,7 @@
       if (userNameEl) userNameEl.textContent = name;
       if (menuUserNameEl) menuUserNameEl.textContent = name;
 
-      const finalAvatar = avatarBase64 || `https://placehold.co/100x100/7000ff/ffffff?text=${name.slice(0,2).toUpperCase()}`;
+      const finalAvatar = avatarBase64 || `https://placehold.co/100x100/ff66b2/ffffff?text=${name.slice(0,2).toUpperCase()}`;
       
       avatarImgs.forEach(img => {
         if (img) img.src = finalAvatar;
@@ -1472,9 +1472,9 @@
         const btn = document.createElement('button');
         btn.onclick = () => window.openModal(dateStr);
         
-        let baseClass = `relative h-24 md:h-28 rounded-[2.5rem] border flex flex-col justify-between items-center p-2 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg focus:ring-2 focus:ring-[#7000ff] focus:outline-none cursor-pointer animate-pop `;
+        let baseClass = `relative h-24 md:h-28 rounded-[2.5rem] border flex flex-col justify-between items-center p-2 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg focus:ring-2 focus:ring-[#ff66b2] focus:outline-none cursor-pointer animate-pop `;
         if (isToday) {
-          baseClass += 'bg-[#7000ff]/15 border-[#7000ff]/50 text-[#00f0ff] font-bold shadow-[0_0_15px_rgba(112,0,255,0.2)]';
+          baseClass += 'bg-[#ff66b2]/15 border-[#ff66b2]/50 text-[#ffb3d9] font-bold shadow-[0_0_15px_rgba(255,102,178,0.2)]';
         } else {
           baseClass += 'bg-gray-900/40 border-gray-800/80 text-gray-300 hover:border-gray-500 hover:bg-gray-800/60';
         }
@@ -1603,7 +1603,7 @@
 
                 // Etiqueta secundaria (porcentaje y monto)
                 const percent = currentTotal > 0 ? ((value / currentTotal) * 100).toFixed(1) : 0;
-                ctx.fillStyle = document.body.classList.contains('light-theme') ? '#6e6183' : '#9ca3af';
+                ctx.fillStyle = document.body.classList.contains('light-theme') ? '#8a3d5f' : '#9ca3af';
                 ctx.font = `normal ${subLabelFontSize} sans-serif`;
                 const formattedValue = new Intl.NumberFormat('es-MX', { style: 'currency', currency: 'MXN' }).format(value);
                 ctx.fillText(`${percent}% | ${formattedValue}`, endX + padding, endY + 6);
@@ -1651,8 +1651,8 @@
                   position: 'cursor',
                   backgroundColor: 'rgba(11, 8, 20, 0.95)',
                   titleColor: '#ffffff',
-                  bodyColor: '#00f0ff',
-                  borderColor: 'rgba(112, 0, 255, 0.4)',
+                  bodyColor: '#ffb3d9',
+                  borderColor: 'rgba(255, 102, 178, 0.4)',
                   borderWidth: 1,
                   padding: 10,
                   displayColors: false,
@@ -1759,7 +1759,7 @@
       Object.keys(CATEGORIES).forEach(type => {
         const cat = CATEGORIES[type];
         gridContainer.innerHTML += `
-          <div class="bg-gray-900/50 rounded-xl p-4 border border-gray-800 flex flex-col items-center text-center transition-all duration-300 hover:-translate-y-1 hover:border-[#7000ff]/30">
+          <div class="bg-gray-900/50 rounded-xl p-4 border border-gray-800 flex flex-col items-center text-center transition-all duration-300 hover:-translate-y-1 hover:border-[#ff66b2]/30">
             <span class="text-sm text-gray-400 mb-1">${cat.emoji} ${cat.label} ${labelTime}</span>
             <span class="text-xl font-bold ${cat.textClass}">${formatCurrency(totals[type])}</span>
           </div>
@@ -1768,7 +1768,7 @@
 
       if (initialAssets > 0) {
         const assetPill = document.createElement('div');
-        assetPill.className = "col-span-1 md:col-span-3 bg-[#7000ff]/10 p-3 rounded-xl border border-[#7000ff]/20 text-center text-xs text-[#00f0ff] font-semibold transition-transform hover:scale-[1.01]";
+        assetPill.className = "col-span-1 md:col-span-3 bg-[#ff66b2]/10 p-3 rounded-xl border border-[#ff66b2]/20 text-center text-xs text-[#ffb3d9] font-semibold transition-transform hover:scale-[1.01]";
         assetPill.innerHTML = `💼 Patrimonio Inicial Preexistente registrado en este período: <span class="font-extrabold text-white text-sm ml-1">${formatCurrency(initialAssets)}</span>`;
         gridContainer.appendChild(assetPill);
       }
@@ -1823,7 +1823,7 @@
           </td>
           <td class="py-3 px-4 text-center">
             <div class="flex items-center justify-center gap-2">
-              <button data-id="${m.id}" class="btn-edit p-1.5 text-gray-500 hover:text-[#00f0ff] rounded-md hover:bg-[#00f0ff]/10 transition-colors" title="Editar">
+              <button data-id="${m.id}" class="btn-edit p-1.5 text-gray-500 hover:text-[#ffb3d9] rounded-md hover:bg-[#ffb3d9]/10 transition-colors" title="Editar">
                 <i data-lucide="edit-3" class="w-4 h-4 pointer-events-none"></i>
               </button>
               <button data-id="${m.id}" class="btn-delete p-1.5 text-gray-500 hover:text-rose-500 rounded-md hover:bg-rose-500/10 transition-colors" title="Eliminar">
@@ -1906,7 +1906,7 @@
           : '';
           
         deck.innerHTML += `
-          <div onclick="window.openAccountDetails('${acc.id}')" class="bg-gray-900/40 p-4 rounded-xl border border-gray-800 flex items-center gap-3 shadow-md cursor-pointer hover:scale-[1.03] active:scale-[0.98] hover:border-[#00f0ff]/30 transition-all duration-300">
+          <div onclick="window.openAccountDetails('${acc.id}')" class="bg-gray-900/40 p-4 rounded-xl border border-gray-800 flex items-center gap-3 shadow-md cursor-pointer hover:scale-[1.03] active:scale-[0.98] hover:border-[#ffb3d9]/30 transition-all duration-300">
             <span class="text-3xl p-2 bg-gray-950 rounded-lg">${acc.emoji}</span>
             <div class="overflow-hidden w-full">
               <h3 class="text-xs text-gray-400 font-medium truncate w-full">${acc.name}</h3>
@@ -1933,8 +1933,8 @@
       const data = accountBalances.map(a => a.balance);
       
       const isLight = document.body.classList.contains('light-theme');
-      const textColor = isLight ? '#1a1528' : '#9ca3af';
-      const gridColor = isLight ? 'rgba(112, 0, 255, 0.1)' : 'rgba(255, 255, 255, 0.05)';
+      const textColor = isLight ? '#2d131f' : '#9ca3af';
+      const gridColor = isLight ? 'rgba(255, 102, 178, 0.1)' : 'rgba(255, 255, 255, 0.05)';
 
       const bgColors = accountBalances.map((acc, i) => {
         const nameLower = acc.name.toLowerCase();
@@ -1952,11 +1952,11 @@
         
         // Colores por defecto elegantes si no coincide ninguna marca
         const colors = [
-          'rgba(0, 240, 255, 0.6)', 
-          'rgba(112, 0, 255, 0.6)', 
-          'rgba(255, 0, 127, 0.6)', 
-          'rgba(0, 255, 128, 0.6)', 
-          'rgba(255, 165, 0, 0.6)'
+          'rgba(255, 179, 217, 0.6)', 
+          'rgba(255, 102, 178, 0.6)', 
+          'rgba(255, 26, 117, 0.6)', 
+          'rgba(255, 153, 204, 0.6)', 
+          'rgba(255, 77, 166, 0.6)'
         ];
         return colors[i % colors.length];
       });
@@ -1994,8 +1994,8 @@
               tooltip: {
                 backgroundColor: 'rgba(11, 8, 20, 0.95)',
                 titleColor: '#fff',
-                bodyColor: '#00f0ff',
-                borderColor: 'rgba(112, 0, 255, 0.3)',
+                bodyColor: '#ffb3d9',
+                borderColor: 'rgba(255, 102, 178, 0.3)',
                 borderWidth: 1,
                 padding: 10,
                 displayColors: false,
@@ -2081,7 +2081,7 @@
           recentListContainer.innerHTML = `<p class="text-xs text-gray-500 text-center py-4">Sin movimientos registrados aún en esta cuenta.</p>`;
         } else {
           recentMovements.forEach(m => {
-            const typeBadgeColor = m.type === 'ingreso' ? 'text-cyan-400' : (m.type === 'gasto' ? 'text-pink-400' : 'text-purple-400');
+            const typeBadgeColor = m.type === 'ingreso' ? 'text-pink-400' : (m.type === 'gasto' ? 'text-rose-400' : 'text-fuchsia-400');
             const prefix = m.type === 'ingreso' ? '+' : '-';
 
             recentListContainer.innerHTML += `
@@ -2181,7 +2181,7 @@
       // Ajustar diseño si es alerta o confirmación (botón rojo)
       if (isAlert) {
         actionBtn.classList.add('hidden');
-        confirmIconBox.className = "inline-flex p-3 bg-[#00f0ff]/10 text-[#00f0ff] rounded-2xl border border-[#00f0ff]/20";
+        confirmIconBox.className = "inline-flex p-3 bg-[#ffb3d9]/10 text-[#ffb3d9] rounded-2xl border border-[#ffb3d9]/20";
         confirmIcon.setAttribute('data-lucide', 'check-circle');
       } else {
         actionBtn.classList.remove('hidden');
@@ -2289,7 +2289,7 @@
               ${acc.initialBalance > 0 ? `<span class="text-[10px] text-gray-400 mt-1">S. Inicial: ${formatCurrency(acc.initialBalance)} (${acc.initialBalanceDate})</span>` : ''}
             </div>
             <div class="flex items-center gap-1">
-              <button onclick="window.editAccount('${acc.id}')" class="p-1 text-gray-400 hover:text-[#00f0ff] rounded-lg hover:bg-cyan-500/10 transition-colors" title="Editar">
+              <button onclick="window.editAccount('${acc.id}')" class="p-1 text-gray-400 hover:text-[#ffb3d9] rounded-lg hover:bg-pink-500/10 transition-colors" title="Editar">
                 <i data-lucide="edit-3" class="w-4 h-4"></i>
               </button>
               <button onclick="window.deleteAccount('${acc.id}')" class="p-1 text-gray-400 hover:text-rose-400 rounded-lg hover:bg-rose-500/10 transition-colors" title="Eliminar">
@@ -2796,8 +2796,8 @@
         renderApp(); 
         
         if (window.accountsChartInstance) {
-          const textColor = isLight ? '#1a1528' : '#9ca3af';
-          const gridColor = isLight ? 'rgba(112, 0, 255, 0.1)' : 'rgba(255, 255, 255, 0.05)';
+          const textColor = isLight ? '#2d131f' : '#9ca3af';
+          const gridColor = isLight ? 'rgba(255, 102, 178, 0.1)' : 'rgba(255, 255, 255, 0.05)';
           window.accountsChartInstance.options.scales.x.ticks.color = textColor;
           window.accountsChartInstance.options.scales.y.ticks.color = textColor;
           window.accountsChartInstance.options.scales.y.grid.color = gridColor;
@@ -2872,8 +2872,8 @@
             ['', '', '', '', 'Balance Final:', formatCurrency(totalIngresos - totalGastos)]
           ],
           theme: 'grid',
-          headStyles: { fillColor: [112, 0, 255] },
-          footStyles: { fillColor: [243, 244, 246], textColor: [15, 23, 42], fontStyle: 'bold' }
+          headStyles: { fillColor: [255, 102, 178] },
+          footStyles: { fillColor: [253, 242, 248], textColor: [45, 19, 31], fontStyle: 'bold' }
         });
         
         doc.save(`Resumen_${monthName}_${year}.pdf`);
@@ -3037,7 +3037,7 @@
         const btn = document.getElementById(`btn-type-${type}`);
         if (btn) {
           if (type === t) {
-            btn.className = `flex-1 py-2.5 text-xs font-black rounded-xl bg-gradient-to-r from-[#7000ff]/20 to-[#ff007f]/20 text-white shadow-md border border-[#ff007f]/40`;
+            btn.className = `flex-1 py-2.5 text-xs font-black rounded-xl bg-gradient-to-r from-[#ff66b2]/20 to-[#ff1a75]/20 text-white shadow-md border border-[#ff1a75]/40`;
           } else {
             btn.className = `flex-1 py-2.5 text-xs font-semibold rounded-xl text-gray-500 hover:text-gray-300 transition-colors`;
           }
