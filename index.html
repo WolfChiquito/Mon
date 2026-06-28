@@ -594,7 +594,7 @@
           <span id="modal-title-text" class="text-white">Añadir Registro</span>
           <span id="modal-date-label" class="text-xs font-semibold text-[#ffb3d9] bg-[#ffb3d9]/10 px-2.5 py-1 rounded-lg ml-2"></span>
         </h3>
-        <button id="btn-close-modal" class="text-gray-400 hover:text-white transition-colors">
+        <button id="btn-close-modal" onclick="window.closeModal()" class="text-gray-400 hover:text-white transition-colors">
           <i data-lucide="x" class="w-5 h-5"></i>
         </button>
       </div>
@@ -1807,6 +1807,8 @@
     window.closeClientModal = closeClientModal;
     window.openClientDetails = openClientDetails;
     window.closeClientDetails = closeClientDetails;
+    window.openInventoryModal = openInventoryModal;
+    window.closeInventoryModal = closeInventoryModal;
 
     // Colapsables
     document.getElementById('toggle-accounts-btn')?.addEventListener('click', () => { document.getElementById('accounts-content').classList.toggle('hidden'); document.getElementById('accounts-chevron').classList.toggle('rotate-180'); });
@@ -1830,6 +1832,53 @@
       document.getElementById('theme-icon').setAttribute('data-lucide', document.body.classList.contains('light-theme') ? 'moon' : 'sun');
       lucide.createIcons();
       renderApp();
+    });
+
+    // Cierre de modales con Escape y Clic Fuera
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        window.closeModal();
+        window.closeAccountManager();
+        window.closeSubcategoryManager();
+        window.closeProfileSettingsModal();
+        window.closePasswordSettingsModal();
+        window.closeAccountDetails();
+        window.closeConfirm();
+        window.closeHoverImagesModal();
+        window.closeClientModal();
+        window.closeClientDetails();
+        window.closeInventoryModal();
+        
+        const profileMenu = document.getElementById('profile-dropdown-menu');
+        const exportMenu = document.getElementById('export-dropdown');
+        if (profileMenu) profileMenu.classList.add('hidden');
+        if (exportMenu) exportMenu.classList.add('hidden');
+      }
+    });
+
+    const modalContainers = [
+      { id: 'modal', closeFunc: window.closeModal },
+      { id: 'accounts-modal', closeFunc: window.closeAccountManager },
+      { id: 'subcategories-modal', closeFunc: window.closeSubcategoryManager },
+      { id: 'account-details-modal', closeFunc: window.closeAccountDetails },
+      { id: 'profile-settings-modal', closeFunc: window.closeProfileSettingsModal },
+      { id: 'password-settings-modal', closeFunc: window.closePasswordSettingsModal },
+      { id: 'confirm-modal', closeFunc: window.closeConfirm },
+      { id: 'hover-images-modal', closeFunc: window.closeHoverImagesModal },
+      { id: 'client-modal', closeFunc: window.closeClientModal },
+      { id: 'client-details-modal', closeFunc: window.closeClientDetails },
+      { id: 'inventory-modal', closeFunc: window.closeInventoryModal }
+    ];
+
+    modalContainers.forEach(modal => {
+      const el = document.getElementById(modal.id);
+      if (el) {
+        el.addEventListener('click', (e) => {
+          if (e.target === el) {
+            modal.closeFunc();
+          }
+        });
+      }
     });
 
     lucide.createIcons();
