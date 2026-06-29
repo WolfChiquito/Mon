@@ -182,14 +182,6 @@
 </head>
 <body class="min-h-screen selection:bg-[#ff1a75]/30 p-4 md:p-8 relative">
 
-  <!-- Imagen Flotante Tooltip -->
-  <img id="snoopy-hover-img" class="fixed z-[9999] hidden w-32 md:w-40 h-auto rounded-2xl shadow-[0_10px_40px_rgba(0,0,0,0.5)] pointer-events-none transform -translate-x-1/2 -translate-y-[110%] transition-opacity duration-200 opacity-0 border border-white/10 object-cover" src="" alt="Tooltip" onerror="this.onerror=null; this.style.display='none';" />
-
-  <!-- Pestaña lateral para imágenes flotantes -->
-  <button id="btn-hover-images-settings" onclick="openHoverImagesModal()" class="fixed right-0 top-1/2 -translate-y-1/2 z-40 bg-gray-950/80 border border-gray-800 border-r-0 rounded-l-xl p-2 text-gray-500 hover:text-[#ffb3d9] hover:bg-gray-900 backdrop-blur-md shadow-lg transition-all focus:outline-none" title="Personalizar Imágenes Flotantes">
-    <i data-lucide="image" class="w-5 h-5"></i>
-  </button>
-
   <!-- PANTALLA DE INICIO DE SESIÓN -->
   <div id="login-screen" class="fixed inset-0 bg-[#040307] z-[100] flex items-center justify-center p-4 transition-all duration-700 ease-out">
     <div class="absolute inset-0 bg-gradient-to-tr from-[#ff66b2]/10 via-transparent to-[#ffb3d9]/5 pointer-events-none"></div>
@@ -197,7 +189,7 @@
       <div class="inline-flex p-4 bg-gradient-to-br from-[#ff66b2]/20 to-[#ffb3d9]/5 text-[#ffb3d9] rounded-2xl mb-6 border border-[#ffb3d9]/30 shadow-lg shadow-[#ffb3d9]/10">
         <i data-lucide="lock" class="w-8 h-8 animate-pulse text-[#ffb3d9] filter drop-shadow-[0_0_8px_rgba(255,179,217,0.5)]"></i>
       </div>
-      <h2 class="text-3xl font-extrabold text-white tracking-tight mb-2 neon-text-pink">Cuentas personales 🐰</h2>
+      <h2 class="text-3xl font-extrabold text-white tracking-tight mb-2 neon-text-pink">Bóveda Patrimonial</h2>
       <p class="text-gray-400 text-xs mb-8 leading-relaxed">Ingrese su clave de seguridad para acceder a su portafolio financiero</p>
       
       <form id="login-form" class="space-y-6">
@@ -242,7 +234,7 @@
           <h1 class="text-2xl md:text-3xl font-extrabold bg-gradient-to-r from-[#ffb3d9] via-[#ff1a75] to-[#ff66b2] bg-clip-text text-transparent">
             Cuentas Personales
           </h1>
-          <p class="text-gray-400 text-xs tracking-wider uppercase font-semibold">Dashboard de cuentas personales 💸 </p>
+          <p class="text-gray-400 text-xs tracking-wider uppercase font-semibold">Dashboard Patrimonial</p>
         </div>
       </div>
       
@@ -261,7 +253,7 @@
           <div id="profile-dropdown-menu" class="hidden absolute right-0 mt-2 w-56 glass-card rounded-2xl border border-[#ff66b2]/25 shadow-[0_10px_30px_rgba(0,0,0,0.5)] z-[60] overflow-hidden animate-pop">
             <div class="p-4 border-b border-gray-800/80 text-center">
               <span class="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Mi Perfil</span>
-              <div class="relative inline-block group cursor-pointer mb-2" onclick="openProfileSettingsModal()">
+              <div class="relative inline-block group cursor-pointer mb-2" onclick="window.openProfileSettingsModal()">
                 <img id="menu-avatar-img" src="https://placehold.co/100x100/ff66b2/ffffff?text=ML" class="w-16 h-16 rounded-2xl object-cover border-2 border-[#ff66b2]/40 mx-auto shadow-lg" alt="Avatar">
                 <div class="absolute inset-0 bg-black/60 rounded-2xl flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
                   <i data-lucide="camera" class="w-5 h-5 text-white"></i>
@@ -271,10 +263,10 @@
               <span class="text-[10px] text-[#ffb3d9] font-semibold tracking-widest uppercase">Clave Maestra Activa</span>
             </div>
             <div class="p-1">
-              <button onclick="openProfileSettingsModal()" class="w-full flex items-center gap-2 px-3 py-2.5 text-xs font-semibold text-gray-300 hover:text-white hover:bg-[#ff66b2]/10 rounded-xl transition-colors">
+              <button onclick="window.openProfileSettingsModal()" class="w-full flex items-center gap-2 px-3 py-2.5 text-xs font-semibold text-gray-300 hover:text-white hover:bg-[#ff66b2]/10 rounded-xl transition-colors">
                 <i data-lucide="user" class="w-4 h-4 text-[#ff66b2]"></i> Ajustes de Perfil
               </button>
-              <button onclick="openPasswordSettingsModal()" class="w-full flex items-center gap-2 px-3 py-2.5 text-xs font-semibold text-gray-300 hover:text-white hover:bg-[#ff1a75]/10 rounded-xl transition-colors">
+              <button onclick="window.openPasswordSettingsModal()" class="w-full flex items-center gap-2 px-3 py-2.5 text-xs font-semibold text-gray-300 hover:text-white hover:bg-[#ff1a75]/10 rounded-xl transition-colors">
                 <i data-lucide="key" class="w-4 h-4 text-[#ff1a75]"></i> Contraseña de Bóveda
               </button>
               <div class="h-px bg-gray-800/80 my-1"></div>
@@ -391,7 +383,7 @@
             <h2 class="text-xl font-bold group-hover:text-[#ffb3d9] transition-colors text-white">Mis Cuentas y Carteras</h2>
           </div>
           <div class="flex items-center gap-3">
-            <button onclick="event.stopPropagation(); openAccountManager()" class="flex items-center gap-1.5 px-3 py-1.5 bg-[#ff66b2]/15 text-[#ffb3d9] border border-[#ffb3d9]/30 hover:bg-[#ff66b2]/25 rounded-xl text-xs font-bold transition-colors cursor-pointer shadow-sm">
+            <button onclick="event.stopPropagation(); window.openAccountManager()" class="flex items-center gap-1.5 px-3 py-1.5 bg-[#ff66b2]/15 text-[#ffb3d9] border border-[#ffb3d9]/30 hover:bg-[#ff66b2]/25 rounded-xl text-xs font-bold transition-colors cursor-pointer shadow-sm">
               <i data-lucide="settings" class="w-3.5 h-3.5"></i> Gestionar
             </button>
             <button class="p-2 bg-gray-950/80 hover:bg-gray-900 border border-gray-800 rounded-lg transition-colors text-gray-400 group-hover:text-white">
@@ -418,7 +410,7 @@
         </div>
       </section>
 
-      <!-- SECCIÓN NEGOCIO: CLIENTES Y MERCANCÍA (NUEVA) -->
+      <!-- SECCIÓN NEGOCIO: CLIENTES Y MERCANCÍA -->
       <section id="business-section" class="glass-card rounded-2xl border border-[#ff66b2]/15 p-6 shadow-xl transition-all duration-300">
         <div id="toggle-business-btn" class="flex justify-between items-center cursor-pointer group">
           <div class="flex items-center gap-3">
@@ -438,7 +430,7 @@
               <h3 class="text-lg font-bold text-white flex items-center gap-2">
                 <i data-lucide="users" class="w-4 h-4 text-[#ffb3d9]"></i> Clientes y Deudas
               </h3>
-              <button onclick="openClientModal()" class="flex items-center gap-1.5 px-3 py-1.5 bg-[#ff66b2]/15 text-[#ffb3d9] border border-[#ffb3d9]/30 hover:bg-[#ff66b2]/25 rounded-xl text-xs font-bold transition-colors shadow-sm">
+              <button onclick="window.openClientModal()" class="flex items-center gap-1.5 px-3 py-1.5 bg-[#ff66b2]/15 text-[#ffb3d9] border border-[#ffb3d9]/30 hover:bg-[#ff66b2]/25 rounded-xl text-xs font-bold transition-colors shadow-sm">
                 <i data-lucide="plus" class="w-3.5 h-3.5"></i> Nuevo
               </button>
             </div>
@@ -457,7 +449,7 @@
               <h3 class="text-lg font-bold text-white flex items-center gap-2">
                 <i data-lucide="package" class="w-4 h-4 text-[#ff66b2]"></i> Inventario General
               </h3>
-              <button onclick="openInventoryModal()" class="flex items-center gap-1.5 px-3 py-1.5 bg-[#ff66b2]/15 text-[#ffb3d9] border border-[#ffb3d9]/30 hover:bg-[#ff66b2]/25 rounded-xl text-xs font-bold transition-colors shadow-sm">
+              <button onclick="window.openInventoryModal()" class="flex items-center gap-1.5 px-3 py-1.5 bg-[#ff66b2]/15 text-[#ffb3d9] border border-[#ffb3d9]/30 hover:bg-[#ff66b2]/25 rounded-xl text-xs font-bold transition-colors shadow-sm">
                 <i data-lucide="plus" class="w-3.5 h-3.5"></i> Artículo
               </button>
             </div>
@@ -541,50 +533,7 @@
     </main>
   </div>
 
-  <!-- MODALES EXISTENTES OMITIDOS POR BREVEDAD EN COMENTARIO, PERO INCLUIDOS EN CÓDIGO -->
-  <!-- MODAL DE IMÁGENES FLOTANTES -->
-  <div id="hover-images-modal" class="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 z-50 hidden opacity-0 transition-all duration-300">
-    <div class="bg-gray-950/95 backdrop-blur-xl rounded-3xl shadow-2xl border border-white/10 w-full max-w-sm overflow-hidden transform scale-95 transition-all duration-300" id="hover-images-content">
-      <div class="flex justify-between items-center p-6 border-b border-gray-800">
-        <h3 class="text-lg font-bold flex items-center gap-2">
-          <i data-lucide="image" class="text-[#ffb3d9] w-5 h-5"></i>
-          <span class="text-white">Imágenes Flotantes</span>
-        </h3>
-        <button onclick="window.closeHoverImagesModal()" class="text-gray-400 hover:text-white transition-colors">
-          <i data-lucide="x" class="w-5 h-5"></i>
-        </button>
-      </div>
-      <form id="hover-images-form" class="p-6 space-y-4">
-        <!-- Ingreso, Gasto, Ahorro inputs -->
-        <div class="grid grid-cols-3 gap-2">
-          <div class="text-center space-y-2 border border-gray-800 p-2 rounded-xl bg-gray-900/50">
-            <label class="block text-[10px] font-semibold text-gray-400 uppercase tracking-wider">Ingresos</label>
-            <div class="relative inline-block group cursor-pointer" onclick="document.getElementById('img-input-ingreso').click()">
-              <img id="preview-img-ingreso" src="" class="w-12 h-12 rounded-lg object-cover border border-[#ffb3d9]/50 mx-auto shadow-sm bg-gray-950" alt="In">
-            </div>
-            <input type="file" id="img-input-ingreso" accept="image/*" class="hidden">
-          </div>
-          <div class="text-center space-y-2 border border-gray-800 p-2 rounded-xl bg-gray-900/50">
-            <label class="block text-[10px] font-semibold text-gray-400 uppercase tracking-wider">Gastos</label>
-            <div class="relative inline-block group cursor-pointer" onclick="document.getElementById('img-input-gasto').click()">
-              <img id="preview-img-gasto" src="" class="w-12 h-12 rounded-lg object-cover border border-[#ff1a75]/50 mx-auto shadow-sm bg-gray-950" alt="Ga">
-            </div>
-            <input type="file" id="img-input-gasto" accept="image/*" class="hidden">
-          </div>
-          <div class="text-center space-y-2 border border-gray-800 p-2 rounded-xl bg-gray-900/50">
-            <label class="block text-[10px] font-semibold text-gray-400 uppercase tracking-wider">Ahorros</label>
-            <div class="relative inline-block group cursor-pointer" onclick="document.getElementById('img-input-ahorro').click()">
-              <img id="preview-img-ahorro" src="" class="w-12 h-12 rounded-lg object-cover border border-[#ff66b2]/50 mx-auto shadow-sm bg-gray-950" alt="Ah">
-            </div>
-            <input type="file" id="img-input-ahorro" accept="image/*" class="hidden">
-          </div>
-        </div>
-        <button type="submit" class="w-full bg-gradient-to-r from-[#ffb3d9] to-[#ff66b2] text-white font-bold py-3.5 rounded-2xl text-xs transition-colors shadow-md mt-2">Guardar Imágenes</button>
-      </form>
-    </div>
-  </div>
-
-  <!-- MODAL PARA AGREGAR/EDITAR MOVIMIENTO (MODIFICADO PARA VENTAS) -->
+  <!-- MODAL PARA AGREGAR/EDITAR MOVIMIENTO -->
   <div id="modal" class="fixed inset-0 bg-black/70 backdrop-blur-md flex items-center justify-center p-4 z-50 hidden opacity-0 transition-all duration-300">
     <div class="bg-gray-950/95 backdrop-blur-xl rounded-3xl shadow-2xl border border-white/10 w-full max-w-md overflow-hidden transform scale-95 transition-all duration-300" id="modal-content">
       
@@ -614,7 +563,7 @@
           <div class="space-y-1.5">
             <div class="flex justify-between items-center">
               <label class="block text-xs font-semibold text-gray-400 uppercase tracking-wider">Subcategoría</label>
-              <button type="button" onclick="openSubcategoryManager()" class="text-xs text-[#ffb3d9] hover:text-[#ffb3d9]/80 flex items-center gap-1">
+              <button type="button" onclick="window.openSubcategoryManager()" class="text-xs text-[#ffb3d9] hover:text-[#ffb3d9]/80 flex items-center gap-1">
                 <i data-lucide="settings-2" class="w-3.5 h-3.5"></i> Gestionar
               </button>
             </div>
@@ -640,7 +589,7 @@
           </div>
         </div>
 
-        <!-- CONTENEDOR VENTA (Nueva Funcionalidad) -->
+        <!-- CONTENEDOR VENTA -->
         <div id="sale-fields" class="space-y-5 hidden">
           <div class="space-y-1.5">
             <label class="block text-xs font-semibold text-gray-400 uppercase tracking-wider">Cliente (Opcional)</label>
@@ -687,13 +636,12 @@
     </div>
   </div>
 
-  <!-- MODAL PARA GESTIONAR CUENTAS (Omitido su contenido para brevedad, sigue igual, se mantiene id="accounts-modal") -->
+  <!-- MODAL PARA GESTIONAR CUENTAS -->
   <div id="accounts-modal" class="fixed inset-0 bg-black/70 backdrop-blur-md flex items-center justify-center p-4 z-50 hidden opacity-0 transition-all duration-300">
-    <!-- El contenido es el original -->
     <div class="bg-gray-950/95 backdrop-blur-xl rounded-3xl shadow-2xl border border-white/10 w-full max-w-md overflow-hidden transform scale-95 transition-all duration-300" id="accounts-modal-content">
       <div class="flex justify-between items-center p-6 border-b border-gray-800">
         <h3 class="text-lg font-bold flex items-center gap-2"><i data-lucide="wallet" class="text-[#ffb3d9] w-5 h-5"></i><span class="text-white">Gestionar Cuentas</span></h3>
-        <button onclick="closeAccountManager()" class="text-gray-400 hover:text-white"><i data-lucide="x" class="w-5 h-5"></i></button>
+        <button onclick="window.closeAccountManager()" class="text-gray-400 hover:text-white"><i data-lucide="x" class="w-5 h-5"></i></button>
       </div>
       <div class="p-6 space-y-5 max-h-[75vh] overflow-y-auto">
         <form id="new-account-form" class="space-y-4 bg-gray-900 p-4 rounded-2xl border border-gray-850">
@@ -730,7 +678,7 @@
     </div>
   </div>
 
-  <!-- MODAL DE DETALLE DE CUENTA (Omitido visualmente, es el mismo del original) -->
+  <!-- MODAL DE DETALLE DE CUENTA -->
   <div id="account-details-modal" class="fixed inset-0 bg-black/70 backdrop-blur-md flex items-center justify-center p-4 z-50 hidden opacity-0 transition-all duration-300">
     <div class="bg-gray-950/95 backdrop-blur-xl rounded-3xl shadow-2xl border border-white/10 w-full max-w-md overflow-hidden transform scale-95 transition-all duration-300" id="account-details-content">
       <div class="flex justify-between items-center p-6 border-b border-gray-800">
@@ -756,7 +704,7 @@
     </div>
   </div>
 
-  <!-- MODALES DE PERFIL, PASS, CONFIRM y SUBCATEGORÍAS se mantienen estructuralmente -->
+  <!-- MODALES DE PERFIL Y PASS -->
   <div id="profile-settings-modal" class="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 z-50 hidden opacity-0 transition-all duration-300">
     <div class="bg-gray-950/95 backdrop-blur-xl rounded-3xl shadow-2xl border border-white/10 w-full max-w-sm overflow-hidden transform scale-95 transition-all duration-300" id="profile-settings-content">
       <div class="flex justify-between items-center p-6 border-b border-gray-800">
@@ -834,15 +782,157 @@
   </div>
 
   <div id="confirm-modal" class="fixed inset-0 bg-black/70 backdrop-blur-md flex items-center justify-center p-4 z-[120] hidden opacity-0 transition-all duration-300">
+    <div class="bg-gray-950/95 backdrop-blur-xl rounded-3xl shadow-2xl border border-white/10 w-full max-w-sm overflow-hidden transform scale-95 transition-all duration-300" id="confirm-content">
+      <div class="p-6 text-center space-y-4">
+        <div id="confirm-icon-box" class="inline-flex p-3 bg-rose-500/10 text-rose-400 rounded-2xl border border-rose-500/20">
+          <i id="confirm-icon" data-lucide="alert-triangle" class="w-6 h-6 animate-pulse"></i>
+        </div>
+        <h3 id="confirm-title" class="text-lg font-bold text-white">Aviso</h3>
+        <p id="confirm-text" class="text-xs text-gray-400 leading-relaxed px-2"></p>
+        
+        <div class="flex gap-3 pt-2" id="confirm-buttons">
+          <button onclick="window.closeConfirm()" class="flex-1 bg-gray-850 hover:bg-gray-800 border border-gray-800 text-gray-300 font-bold py-3 rounded-2xl text-xs transition-colors">
+            Cerrar
+          </button>
+          <button id="confirm-action-btn" onclick="window.triggerConfirm()" class="flex-1 bg-gradient-to-r from-rose-600 to-rose-500 text-white font-bold py-3 rounded-2xl text-xs transition-all shadow-md">
+            Continuar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL SUBCATEGORIAS -->
+  <div id="subcategories-modal" class="fixed inset-0 bg-black/70 backdrop-blur-md flex items-center justify-center p-4 z-50 hidden opacity-0 transition-all duration-300">
+    <div class="bg-gray-950/95 backdrop-blur-xl rounded-3xl shadow-2xl border border-white/10 w-full max-w-md overflow-hidden transform scale-95 transition-all duration-300" id="subcategories-modal-content">
+      <div class="flex justify-between items-center p-6 border-b border-gray-800">
+        <h3 class="text-lg font-semibold flex items-center gap-2">
+          <i data-lucide="tag" class="text-[#ffb3d9] w-5 h-5"></i>
+          <span class="text-white">Personalizar Subcategorías</span>
+        </h3>
+        <button onclick="window.closeSubcategoryManager()" class="text-gray-400 hover:text-white transition-colors">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+      <div class="p-6 space-y-5 max-h-[75vh] overflow-y-auto">
+        <form id="new-subcat-form" class="space-y-4 bg-gray-900 p-4 rounded-2xl border border-gray-850">
+          <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wider">Crear Subcategoría</h4>
+          <div class="space-y-3">
+            <select id="new-subcat-type" class="w-full bg-gray-950 border border-gray-850 rounded-xl px-3.5 py-3 text-xs focus:outline-none focus:border-[#ff66b2] text-white cursor-pointer">
+              <option value="ingreso">Para Ingresos (📈)</option>
+              <option value="gasto" selected>Para Gastos (📉)</option>
+              <option value="ahorro">Para Ahorros (💰)</option>
+            </select>
+            <div class="grid grid-cols-4 gap-3">
+              <input type="text" id="new-subcat-emoji" placeholder="🍔" required class="col-span-1 bg-gray-950 border border-gray-850 rounded-xl px-3 py-3 text-center text-lg focus:outline-none focus:border-[#ff66b2] text-white">
+              <input type="text" id="new-subcat-name" placeholder="Ej. Comida..." required class="col-span-3 bg-gray-950 border border-gray-850 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#ff66b2] text-white">
+            </div>
+          </div>
+          <button type="submit" class="w-full bg-gradient-to-r from-[#ffb3d9] to-[#ff66b2] text-white font-bold py-3 rounded-xl text-xs transition-colors shadow-md">
+            + Agregar Subcategoría
+          </button>
+        </form>
+        <div class="space-y-3">
+          <div class="flex justify-between items-center">
+            <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wider">Lista de Subcategorías</h4>
+            <select id="subcat-filter" class="bg-transparent border-none text-xs text-[#ffb3d9] focus:outline-none cursor-pointer font-bold hover:text-[#ffb3d9]/80 transition-colors">
+              <option value="all" class="bg-gray-900 text-white">Ver todas</option>
+              <option value="ingreso" class="bg-gray-900 text-white">Ingresos</option>
+              <option value="gasto" class="bg-gray-900 text-white">Gastos</option>
+              <option value="ahorro" class="bg-gray-900 text-white">Ahorros</option>
+            </select>
+          </div>
+          <div id="subcategories-manager-list" class="space-y-2 max-h-48 overflow-y-auto pr-1"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL CLIENTE -->
+  <div id="client-modal" class="fixed inset-0 bg-black/70 backdrop-blur-md flex items-center justify-center p-4 z-50 hidden opacity-0 transition-all duration-300">
+    <div class="bg-gray-950/95 backdrop-blur-xl rounded-3xl shadow-2xl border border-white/10 w-full max-w-sm overflow-hidden transform scale-95 transition-all duration-300" id="client-modal-content">
+      <div class="flex justify-between items-center p-6 border-b border-gray-800">
+        <h3 class="text-lg font-bold flex items-center gap-2"><i data-lucide="user" class="w-5 h-5 text-[#ffb3d9]"></i><span id="client-modal-title" class="text-white">Nuevo Cliente</span></h3>
+        <button onclick="window.closeClientModal()" class="text-gray-400 hover:text-white transition-colors"><i data-lucide="x" class="w-5 h-5"></i></button>
+      </div>
+      <form id="client-form" class="p-6 space-y-4">
+        <div class="text-center space-y-2">
+          <label class="block text-xs font-semibold text-gray-400 uppercase">Foto</label>
+          <div class="relative inline-block group cursor-pointer" onclick="document.getElementById('client-avatar-input').click()">
+            <img id="client-avatar-preview" src="https://placehold.co/100x100/ff66b2/ffffff?text=CL" class="w-16 h-16 rounded-2xl object-cover border-2 border-[#ff66b2] mx-auto shadow-lg" alt="Avatar">
+          </div>
+          <input type="file" id="client-avatar-input" accept="image/*" class="hidden">
+        </div>
+        <div class="space-y-1.5">
+          <label class="block text-xs font-semibold text-gray-400 uppercase">Nombre del Cliente</label>
+          <input type="text" id="client-name" required placeholder="Ej. Juan Pérez" class="w-full bg-gray-900 border border-gray-800 rounded-xl px-4 py-3 focus:border-[#ff66b2] outline-none text-white text-sm" />
+        </div>
+        <div class="space-y-1.5">
+          <label class="block text-xs font-semibold text-gray-400 uppercase">Deuda Inicial ($)</label>
+          <input type="number" id="client-debt" step="0.01" min="0" placeholder="0.00" class="w-full bg-gray-900 border border-gray-800 rounded-xl px-4 py-3 focus:border-[#ff66b2] outline-none text-white text-sm" />
+        </div>
+        <button type="submit" class="w-full bg-gradient-to-r from-[#ff66b2] to-[#ff1a75] text-white font-bold py-3.5 rounded-xl text-xs transition-colors shadow-md">Guardar Cliente</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL DETALLE CLIENTE (PAGOS) -->
+  <div id="client-details-modal" class="fixed inset-0 bg-black/70 backdrop-blur-md flex items-center justify-center p-4 z-50 hidden opacity-0 transition-all duration-300">
+    <div class="bg-gray-950/95 backdrop-blur-xl rounded-3xl shadow-2xl border border-white/10 w-full max-w-sm overflow-hidden transform scale-95 transition-all duration-300" id="client-details-content">
+      <div class="flex justify-between items-center p-6 border-b border-gray-800">
+        <div class="flex items-center gap-3">
+          <img id="detail-client-avatar" src="" class="w-10 h-10 rounded-lg object-cover border border-[#ff66b2]">
+          <div>
+            <h3 id="detail-client-name" class="text-base font-bold text-white leading-tight"></h3>
+            <span class="text-[10px] text-gray-400">Cliente Registrado</span>
+          </div>
+        </div>
+        <button onclick="window.closeClientDetails()" class="text-gray-400 hover:text-white transition-colors"><i data-lucide="x" class="w-5 h-5"></i></button>
+      </div>
+      <div class="p-6 space-y-5">
+        <div class="bg-amber-500/10 border border-amber-500/20 rounded-2xl p-4 text-center">
+          <span class="text-[10px] font-bold text-amber-400 uppercase tracking-wider block mb-1">Deuda Actual Pendiente</span>
+          <p id="detail-client-debt" class="text-3xl font-black text-white">$0.00</p>
+        </div>
+        
+        <form id="client-payment-form" class="space-y-3 bg-gray-900/50 p-4 rounded-2xl border border-gray-800">
+          <h4 class="text-xs font-bold text-emerald-400 flex items-center gap-1"><i data-lucide="check-circle" class="w-4 h-4"></i> Registrar Abono o Pago</h4>
+          <div class="space-y-1.5">
+            <label class="block text-[10px] text-gray-400 uppercase font-semibold">Monto del Abono</label>
+            <input type="number" id="client-pay-amount" step="0.01" min="0.01" required placeholder="0.00" class="w-full bg-gray-950 border border-gray-800 rounded-xl px-3 py-2 text-sm text-white focus:outline-none">
+          </div>
+          <div class="space-y-1.5">
+            <label class="block text-[10px] text-gray-400 uppercase font-semibold">Recibir en Cuenta</label>
+            <select id="client-pay-account" required class="w-full bg-gray-950 border border-gray-800 rounded-xl px-3 py-2 text-xs text-white focus:outline-none cursor-pointer"></select>
+          </div>
+          <button type="submit" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-2.5 rounded-xl text-xs transition-colors mt-2 shadow-md">
+            Aplicar Pago a Deuda
+          </button>
+        </form>
+
+        <div class="flex gap-2 pt-2">
+          <button id="btn-edit-client" class="flex-1 bg-gray-800 text-gray-300 py-2.5 rounded-xl text-xs font-bold hover:bg-gray-700 transition-colors">Editar Perfil</button>
+          <button id="btn-delete-client" class="flex-1 bg-rose-600/20 text-rose-400 border border-rose-500/30 py-2.5 rounded-xl text-xs font-bold hover:bg-rose-500/30 transition-colors">Eliminar</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- MODAL MERCANCÍA -->
   <div id="inventory-modal" class="fixed inset-0 bg-black/70 backdrop-blur-md flex items-center justify-center p-4 z-50 hidden opacity-0 transition-all duration-300">
     <div class="bg-gray-950/95 backdrop-blur-xl rounded-3xl shadow-2xl border border-white/10 w-full max-w-sm overflow-hidden transform scale-95 transition-all duration-300" id="inventory-modal-content">
       <div class="flex justify-between items-center p-6 border-b border-gray-800">
         <h3 class="text-lg font-bold flex items-center gap-2"><i data-lucide="package" class="w-5 h-5 text-[#ffb3d9]"></i><span id="inv-modal-title" class="text-white">Nuevo Artículo</span></h3>
-        <button onclick="closeInventoryModal()" class="text-gray-400 hover:text-white transition-colors"><i data-lucide="x" class="w-5 h-5"></i></button>
+        <button onclick="window.closeInventoryModal()" class="text-gray-400 hover:text-white transition-colors"><i data-lucide="x" class="w-5 h-5"></i></button>
       </div>
       <form id="inventory-form" class="p-6 space-y-4">
+        <div class="text-center space-y-2">
+          <label class="block text-xs font-semibold text-gray-400 uppercase">Foto del Producto</label>
+          <div class="relative inline-block group cursor-pointer" onclick="document.getElementById('inv-image-input').click()">
+            <img id="inv-image-preview" src="https://placehold.co/100x100/ff66b2/ffffff?text=PR" class="w-16 h-16 rounded-2xl object-cover border-2 border-[#ff66b2] mx-auto shadow-lg" alt="Producto">
+          </div>
+          <input type="file" id="inv-image-input" accept="image/*" class="hidden">
+        </div>
         <div class="space-y-1.5">
           <label class="block text-xs font-semibold text-gray-400 uppercase">Nombre del Producto</label>
           <input type="text" id="inv-name" required placeholder="Ej. Camiseta Neon" class="w-full bg-gray-900 border border-gray-800 rounded-xl px-4 py-3 focus:border-[#ff66b2] outline-none text-white text-sm" />
@@ -907,7 +997,6 @@
     let inactivityTimeout;
     let confirmCallback = null; 
     let vaultPassword = '0902'; 
-    let hoverImagesData = { ingreso: '', gasto: '', ahorro: '' };
     
     // Variables para Ventas y Modales
     let currentSaleItems = [];
@@ -1055,10 +1144,6 @@
       });
       onSnapshot(doc(db, 'artifacts', APP_ID, 'public', 'data', 'settings', 'security'), (docSnap) => {
         if (docSnap.exists() && docSnap.data().password) vaultPassword = docSnap.data().password;
-      });
-      onSnapshot(doc(db, 'artifacts', APP_ID, 'public', 'data', 'settings', 'hoverImages'), async (docSnap) => {
-        if (docSnap.exists()) hoverImagesData = docSnap.data();
-        else await setDoc(doc(db, 'artifacts', APP_ID, 'public', 'data', 'settings', 'hoverImages'), hoverImagesData);
       });
       updateBiometricLoginUI();
       updateBiometricSettingsUI();
@@ -1290,12 +1375,16 @@
       if(filtered.length === 0) { list.innerHTML = '<p class="text-xs text-gray-500 text-center py-4">Inventario vacío.</p>'; return; }
 
       filtered.forEach(i => {
+        const imgUrl = i.image || `https://placehold.co/100x100/ff66b2/ffffff?text=${i.name.substring(0,2).toUpperCase()}`;
         const stockColor = i.stock <= 5 ? 'text-rose-400' : 'text-emerald-400';
         list.innerHTML += `
           <div class="flex items-center justify-between bg-gray-950 p-3 rounded-xl border border-gray-800">
-            <div class="flex flex-col">
-              <span class="text-sm font-bold text-white">${i.name}</span>
-              <span class="text-[10px] text-gray-400">P. Venta: ${formatCurrency(i.price)} | Costo: ${formatCurrency(i.cost)}</span>
+            <div class="flex items-center gap-3">
+              <img src="${imgUrl}" class="w-10 h-10 rounded-lg object-cover border border-[#ff66b2]/30">
+              <div class="flex flex-col">
+                <span class="text-sm font-bold text-white">${i.name}</span>
+                <span class="text-[10px] text-gray-400">P. Venta: ${formatCurrency(i.price)} | Costo: ${formatCurrency(i.cost)}</span>
+              </div>
             </div>
             <div class="flex items-center gap-3">
               <span class="text-xs font-bold ${stockColor} bg-gray-900 px-2 py-1 rounded-md border border-gray-800">${i.stock} un.</span>
@@ -1388,7 +1477,7 @@
         } else {
           await addDoc(collection(db, 'artifacts', APP_ID, 'public', 'data', 'clients'), { name, debt, avatar: finalAvatar, timestamp: new Date().toISOString() });
         }
-        closeClientModal();
+        window.closeClientModal();
       } catch (err) { console.error(err); }
     });
 
@@ -1423,14 +1512,14 @@
     }
 
     document.getElementById('btn-edit-client')?.addEventListener('click', () => {
-      closeClientDetails(); openClientModal(activeClientForDetail);
+      window.closeClientDetails(); window.openClientModal(activeClientForDetail);
     });
     
     document.getElementById('btn-delete-client')?.addEventListener('click', () => {
-      showConfirm("¿Eliminar cliente?", "Se perderá su registro de deuda. Los historiales de venta previos en movimientos se mantendrán.", async () => {
+      window.showConfirm("¿Eliminar cliente?", "Se perderá su registro de deuda. Los historiales de venta previos en movimientos se mantendrán.", async () => {
         try {
           await deleteDoc(doc(db, 'artifacts', APP_ID, 'public', 'data', 'clients', activeClientForDetail));
-          closeClientDetails();
+          window.closeClientDetails();
         } catch (err) { console.error(err); }
       });
     });
@@ -1443,7 +1532,7 @@
       const acc = accounts.find(x => x.id === accId);
       
       if(!c || !acc || amount <= 0) return;
-      if(amount > c.debt) return showConfirm("Atención", "El monto de abono es mayor a la deuda total.", null, true);
+      if(amount > c.debt) return window.showConfirm("Atención", "El monto de abono es mayor a la deuda total.", null, true);
 
       try {
         // Reducir deuda
@@ -1463,7 +1552,7 @@
           timestamp: new Date().toISOString()
         });
         
-        closeClientDetails();
+        window.closeClientDetails();
       } catch (err) { console.error(err); }
     });
 
@@ -1472,6 +1561,7 @@
       editingInvId = id;
       const form = document.getElementById('inventory-form');
       const title = document.getElementById('inv-modal-title');
+      const preview = document.getElementById('inv-image-preview');
       if (form) form.reset();
       
       if (id) {
@@ -1482,19 +1572,38 @@
           document.getElementById('inv-cost').value = i.cost || 0;
           document.getElementById('inv-price').value = i.price || 0;
           document.getElementById('inv-stock').value = i.stock || 0;
+          if (preview) preview.src = i.image || `https://placehold.co/100x100/ff66b2/ffffff?text=${i.name.substring(0,2).toUpperCase()}`;
         }
       } else {
         if (title) title.textContent = "Nuevo Artículo";
+        if (preview) preview.src = "https://placehold.co/100x100/ff66b2/ffffff?text=PR";
       }
       const modal = document.getElementById('inventory-modal');
       const content = document.getElementById('inventory-modal-content');
       modal.classList.remove('hidden'); setTimeout(() => { modal.classList.remove('opacity-0'); content.classList.remove('scale-95'); }, 10);
     }
+    
     function closeInventoryModal() {
       const modal = document.getElementById('inventory-modal');
       const content = document.getElementById('inventory-modal-content');
       modal.classList.add('opacity-0'); content.classList.add('scale-95'); setTimeout(() => modal.classList.add('hidden'), 300);
     }
+
+    document.getElementById('inv-image-input')?.addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = (event) => {
+          const img = new Image(); img.onload = () => {
+            const canvas = document.createElement('canvas'); canvas.width = 100; canvas.height = 100;
+            const ctx = canvas.getContext('2d'); ctx.drawImage(img, 0, 0, 100, 100);
+            document.getElementById('inv-image-preview').src = canvas.toDataURL('image/jpeg', 0.8);
+          };
+          img.src = event.target.result;
+        };
+        reader.readAsDataURL(file);
+      }
+    });
 
     document.getElementById('inventory-form')?.addEventListener('submit', async (e) => {
       e.preventDefault();
@@ -1502,24 +1611,18 @@
       const cost = parseFloat(document.getElementById('inv-cost').value) || 0;
       const price = parseFloat(document.getElementById('inv-price').value) || 0;
       const stock = parseInt(document.getElementById('inv-stock').value) || 0;
+      const imageSrc = document.getElementById('inv-image-preview').src;
+      const finalImage = imageSrc.includes('placehold') ? '' : imageSrc;
 
       try {
         if (editingInvId) {
-          await updateDoc(doc(db, 'artifacts', APP_ID, 'public', 'data', 'inventory', editingInvId), { name, cost, price, stock });
+          await updateDoc(doc(db, 'artifacts', APP_ID, 'public', 'data', 'inventory', editingInvId), { name, cost, price, stock, image: finalImage });
         } else {
-          await addDoc(collection(db, 'artifacts', APP_ID, 'public', 'data', 'inventory'), { name, cost, price, stock, timestamp: new Date().toISOString() });
+          await addDoc(collection(db, 'artifacts', APP_ID, 'public', 'data', 'inventory'), { name, cost, price, stock, image: finalImage, timestamp: new Date().toISOString() });
         }
-        closeInventoryModal();
+        window.closeInventoryModal();
       } catch (err) { console.error(err); }
     });
-
-    window.editInventory = openInventoryModal;
-    window.deleteInventory = (id) => {
-      showConfirm("¿Eliminar artículo?", "Se borrará del inventario permanentemente.", async () => {
-        try { await deleteDoc(doc(db, 'artifacts', APP_ID, 'public', 'data', 'inventory', id)); } 
-        catch (err) { console.error(err); }
-      });
-    };
 
     // ==========================================
     // SECCIÓN DE MODIFICACIONES CUENTAS Y MOVIMIENTOS
@@ -1645,11 +1748,11 @@
       
       const invItem = inventory.find(i => i.id === prodId);
       if(!invItem) return;
-      if(qty > invItem.stock) return showConfirm("Stock Insuficiente", `Sólo tienes ${invItem.stock} unidades de ${invItem.name}.`, null, true);
+      if(qty > invItem.stock) return window.showConfirm("Stock Insuficiente", `Sólo tienes ${invItem.stock} unidades de ${invItem.name}.`, null, true);
 
       const existing = currentSaleItems.find(i => i.id === prodId);
       if (existing) {
-         if (existing.qty + qty > invItem.stock) return showConfirm("Stock Insuficiente", "Se excede el stock disponible.", null, true);
+         if (existing.qty + qty > invItem.stock) return window.showConfirm("Stock Insuficiente", "Se excede el stock disponible.", null, true);
          existing.qty += qty;
       } else {
          currentSaleItems.push({ id: prodId, name: invItem.name, price: invItem.price, qty: qty, cost: invItem.cost });
@@ -1711,7 +1814,7 @@
       const isSale = formType === 'venta_credito' || formType === 'venta';
 
       if (isSale) {
-        if(currentSaleItems.length === 0) return showConfirm("Atención", "Añade al menos un producto a la venta.", null, true);
+        if(currentSaleItems.length === 0) return window.showConfirm("Atención", "Añade al menos un producto a la venta.", null, true);
         const totalAmount = currentSaleItems.reduce((acc, curr) => acc + (curr.price * curr.qty), 0);
         const paymentMethod = document.getElementById('form-sale-payment').value;
         const clientId = document.getElementById('form-sale-client').value;
@@ -1719,7 +1822,7 @@
         const targetAcc = accounts.find(a => a.id === accId);
         const targetClient = clients.find(c => c.id === clientId);
 
-        if (paymentMethod === 'credito' && clientId === 'public') return showConfirm("Error", "Para fiar/venta a crédito, debes seleccionar un cliente registrado.", null, true);
+        if (paymentMethod === 'credito' && clientId === 'public') return window.showConfirm("Error", "Para fiar/venta a crédito, debes seleccionar un cliente registrado.", null, true);
 
         const mType = paymentMethod === 'contado' ? 'ingreso' : 'venta_credito';
         const conceptStr = `Venta: ${currentSaleItems.map(i => `${i.qty}x ${i.name}`).join(', ')}`;
@@ -1750,7 +1853,7 @@
           }
           // Guardar
           await addDoc(collection(db, 'artifacts', APP_ID, 'public', 'data', 'movements'), mData);
-          closeModal();
+          window.closeModal();
         } catch(err) { console.error(err); }
 
       } else {
@@ -1771,13 +1874,13 @@
 
         try {
           await addDoc(collection(db, 'artifacts', APP_ID, 'public', 'data', 'movements'), mData);
-          closeModal();
+          window.closeModal();
         } catch (err) { console.error(err); }
       }
     });
 
     window.deleteMovement = (id) => {
-      showConfirm("¿Eliminar registro?", "No se recuperará.", async () => {
+      window.showConfirm("¿Eliminar registro?", "No se recuperará.", async () => {
         try { await deleteDoc(doc(db, 'artifacts', APP_ID, 'public', 'data', 'movements', id)); } 
         catch (err) { console.error(err); }
       });
@@ -1919,7 +2022,7 @@
     }
 
     function deleteAccount(id) {
-      showConfirm("¿Eliminar cuenta?", "Esta acción no se puede deshacer.", async () => {
+      window.showConfirm("¿Eliminar cuenta?", "Esta acción no se puede deshacer.", async () => {
         try {
           await deleteDoc(doc(db, 'artifacts', APP_ID, 'public', 'data', 'accounts', id));
           if (editingAccountId === id) resetAccountForm();
@@ -1999,7 +2102,7 @@
       const btnFilterHistory = document.getElementById('btn-detail-filter-history');
       if (btnFilterHistory) {
         btnFilterHistory.onclick = () => {
-          closeAccountDetails();
+          window.closeAccountDetails();
           const historyContent = document.getElementById('history-content');
           const historyChevron = document.getElementById('history-chevron');
           if (historyContent && historyContent.classList.contains('hidden')) {
@@ -2021,7 +2124,7 @@
       const btnEditAcc = document.getElementById('btn-detail-edit-acc');
       if (btnEditAcc) {
         btnEditAcc.onclick = () => {
-          closeAccountDetails();
+          window.closeAccountDetails();
           window.openAccountManager();
           window.editAccount(acc.id);
         };
@@ -2098,27 +2201,6 @@
     window.closePasswordSettingsModal = () => {
       const modal = document.getElementById('password-settings-modal');
       const content = document.getElementById('password-settings-content');
-      if (modal && content) {
-        modal.classList.add('opacity-0'); content.classList.add('scale-95');
-        setTimeout(() => modal.classList.add('hidden'), 300);
-      }
-    };
-
-    window.openHoverImagesModal = () => {
-      document.getElementById('preview-img-ingreso').src = hoverImagesData.ingreso || '';
-      document.getElementById('preview-img-gasto').src = hoverImagesData.gasto || '';
-      document.getElementById('preview-img-ahorro').src = hoverImagesData.ahorro || '';
-      const modal = document.getElementById('hover-images-modal');
-      const content = document.getElementById('hover-images-content');
-      if (modal && content) {
-        modal.classList.remove('hidden');
-        setTimeout(() => { modal.classList.remove('opacity-0'); content.classList.remove('scale-95'); }, 10);
-      }
-    };
-
-    window.closeHoverImagesModal = () => {
-      const modal = document.getElementById('hover-images-modal');
-      const content = document.getElementById('hover-images-content');
       if (modal && content) {
         modal.classList.add('opacity-0'); content.classList.add('scale-95');
         setTimeout(() => modal.classList.add('hidden'), 300);
@@ -2253,44 +2335,6 @@
       }
     });
 
-    ['ingreso', 'gasto', 'ahorro'].forEach(type => {
-      document.getElementById(`img-input-${type}`)?.addEventListener('change', (e) => {
-        const file = e.target.files[0];
-        if (!file) return;
-        const reader = new FileReader();
-        reader.onload = (event) => {
-          const img = new Image();
-          img.onload = () => {
-            const canvas = document.createElement('canvas');
-            let w = img.width, h = img.height, max = 250;
-            if (w > h) { if (w > max) { h *= max / w; w = max; } } else { if (h > max) { w *= max / h; h = max; } }
-            canvas.width = w; canvas.height = h;
-            canvas.getContext('2d').drawImage(img, 0, 0, w, h);
-            document.getElementById(`preview-img-${type}`).src = canvas.toDataURL('image/jpeg', 0.7);
-          };
-          img.src = event.target.result;
-        };
-        reader.readAsDataURL(file);
-      });
-    });
-
-    document.getElementById('hover-images-form')?.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const newImages = {
-        ingreso: document.getElementById('preview-img-ingreso').src,
-        gasto: document.getElementById('preview-img-gasto').src,
-        ahorro: document.getElementById('preview-img-ahorro').src
-      };
-      if (newImages.ingreso.includes(window.location.href)) newImages.ingreso = hoverImagesData.ingreso;
-      if (newImages.gasto.includes(window.location.href)) newImages.gasto = hoverImagesData.gasto;
-      if (newImages.ahorro.includes(window.location.href)) newImages.ahorro = hoverImagesData.ahorro;
-      
-      try {
-        await setDoc(doc(db, 'artifacts', APP_ID, 'public', 'data', 'settings', 'hoverImages'), newImages, { merge: true });
-        window.closeHoverImagesModal();
-      } catch (err) { console.error(err); }
-    });
-
     function getMonthExportData() {
       const year = currentDate.getFullYear();
       const month = currentDate.getMonth();
@@ -2419,7 +2463,6 @@
         window.closePasswordSettingsModal();
         window.closeAccountDetails();
         window.closeConfirm();
-        window.closeHoverImagesModal();
         window.closeClientModal();
         window.closeClientDetails();
         window.closeInventoryModal();
@@ -2439,7 +2482,6 @@
       { id: 'profile-settings-modal', closeFunc: window.closeProfileSettingsModal },
       { id: 'password-settings-modal', closeFunc: window.closePasswordSettingsModal },
       { id: 'confirm-modal', closeFunc: window.closeConfirm },
-      { id: 'hover-images-modal', closeFunc: window.closeHoverImagesModal },
       { id: 'client-modal', closeFunc: window.closeClientModal },
       { id: 'client-details-modal', closeFunc: window.closeClientDetails },
       { id: 'inventory-modal', closeFunc: window.closeInventoryModal }
