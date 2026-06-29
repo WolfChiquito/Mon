@@ -197,7 +197,7 @@
       <div class="inline-flex p-4 bg-gradient-to-br from-[#ff66b2]/20 to-[#ffb3d9]/5 text-[#ffb3d9] rounded-2xl mb-6 border border-[#ffb3d9]/30 shadow-lg shadow-[#ffb3d9]/10">
         <i data-lucide="lock" class="w-8 h-8 animate-pulse text-[#ffb3d9] filter drop-shadow-[0_0_8px_rgba(255,179,217,0.5)]"></i>
       </div>
-      <h2 class="text-3xl font-extrabold text-white tracking-tight mb-2 neon-text-pink">Control de cuentas 💸</h2>
+      <h2 class="text-3xl font-extrabold text-white tracking-tight mb-2 neon-text-pink">Bóveda Patrimonial</h2>
       <p class="text-gray-400 text-xs mb-8 leading-relaxed">Ingrese su clave de seguridad para acceder a su portafolio financiero</p>
       
       <form id="login-form" class="space-y-6">
@@ -242,7 +242,7 @@
           <h1 class="text-2xl md:text-3xl font-extrabold bg-gradient-to-r from-[#ffb3d9] via-[#ff1a75] to-[#ff66b2] bg-clip-text text-transparent">
             Cuentas Personales
           </h1>
-          <p class="text-gray-400 text-xs tracking-wider uppercase font-semibold">Dashboard PARA CONTROL DE CUENTAS 💵</p>
+          <p class="text-gray-400 text-xs tracking-wider uppercase font-semibold">Dashboard Patrimonial</p>
         </div>
       </div>
       
@@ -757,83 +757,83 @@
   </div>
 
   <!-- MODALES DE PERFIL, PASS, CONFIRM y SUBCATEGORÍAS se mantienen estructuralmente -->
-  <div id="profile-settings-modal" class="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 z-50 hidden opacity-0 transition-all duration-300"><div class="bg-gray-950/95 rounded-3xl w-full max-w-sm" id="profile-settings-content"></div></div>
-  <div id="password-settings-modal" class="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 z-50 hidden opacity-0 transition-all duration-300"><div class="bg-gray-950/95 rounded-3xl w-full max-w-sm" id="password-settings-content"></div></div>
-  <div id="confirm-modal" class="fixed inset-0 bg-black/70 backdrop-blur-md flex items-center justify-center p-4 z-[120] hidden opacity-0 transition-all duration-300"><div class="bg-gray-950/95 rounded-3xl w-full max-w-sm" id="confirm-content"><div class="p-6 text-center space-y-4"><div id="confirm-icon-box"></div><h3 id="confirm-title" class="text-lg font-bold text-white"></h3><p id="confirm-text" class="text-xs text-gray-400"></p><div class="flex gap-3 pt-2" id="confirm-buttons"><button onclick="window.closeConfirm()" class="flex-1 bg-gray-850 py-3 rounded-2xl text-xs text-white">Cerrar</button><button id="confirm-action-btn" onclick="window.triggerConfirm()" class="flex-1 bg-rose-600 py-3 rounded-2xl text-xs text-white">Sí, eliminar</button></div></div></div></div>
-  <div id="subcategories-modal" class="fixed inset-0 bg-black/70 backdrop-blur-md flex items-center justify-center p-4 z-50 hidden opacity-0 transition-all duration-300"><div class="bg-gray-950/95 rounded-3xl w-full max-w-md" id="subcategories-modal-content"><div class="flex justify-between p-6 border-b border-gray-800"><h3 class="text-white font-bold">Personalizar Subcategorías</h3><button onclick="closeSubcategoryManager()"><i data-lucide="x" class="w-5 h-5 text-gray-400"></i></button></div><div class="p-6 space-y-4"><form id="new-subcat-form"><select id="new-subcat-type" class="w-full bg-gray-950 border border-gray-850 rounded-xl px-3 py-3 mb-2 text-white"><option value="ingreso">Ingreso</option><option value="gasto">Gasto</option><option value="ahorro">Ahorro</option></select><div class="flex gap-2"><input id="new-subcat-emoji" type="text" class="w-16 bg-gray-950 border border-gray-850 rounded-xl text-center text-white"><input id="new-subcat-name" type="text" class="flex-1 bg-gray-950 border border-gray-850 rounded-xl px-3 text-white"></div><button type="submit" class="w-full mt-3 bg-[#ff66b2] py-2 rounded-xl text-white font-bold text-xs">Añadir</button></form><div id="subcategories-manager-list" class="mt-4 space-y-2"></div></div></div></div>
-
-
-  <!-- NUEVOS MODALES: CLIENTES Y MERCANCÍA -->
-  
-  <!-- MODAL CLIENTE -->
-  <div id="client-modal" class="fixed inset-0 bg-black/70 backdrop-blur-md flex items-center justify-center p-4 z-50 hidden opacity-0 transition-all duration-300">
-    <div class="bg-gray-950/95 backdrop-blur-xl rounded-3xl shadow-2xl border border-white/10 w-full max-w-sm overflow-hidden transform scale-95 transition-all duration-300" id="client-modal-content">
+  <div id="profile-settings-modal" class="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 z-50 hidden opacity-0 transition-all duration-300">
+    <div class="bg-gray-950/95 backdrop-blur-xl rounded-3xl shadow-2xl border border-white/10 w-full max-w-sm overflow-hidden transform scale-95 transition-all duration-300" id="profile-settings-content">
       <div class="flex justify-between items-center p-6 border-b border-gray-800">
-        <h3 class="text-lg font-bold flex items-center gap-2"><i data-lucide="user" class="w-5 h-5 text-[#ffb3d9]"></i><span id="client-modal-title" class="text-white">Nuevo Cliente</span></h3>
-        <button onclick="closeClientModal()" class="text-gray-400 hover:text-white transition-colors"><i data-lucide="x" class="w-5 h-5"></i></button>
+        <h3 class="text-lg font-bold flex items-center gap-2">
+          <i data-lucide="user" class="text-[#ff66b2] w-5 h-5"></i>
+          <span class="text-white">Perfil de Usuario</span>
+        </h3>
+        <button onclick="window.closeProfileSettingsModal()" class="text-gray-400 hover:text-white transition-colors">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
       </div>
-      <form id="client-form" class="p-6 space-y-4">
+      <form id="profile-settings-form" class="p-6 space-y-5">
         <div class="text-center space-y-2">
-          <label class="block text-xs font-semibold text-gray-400 uppercase">Foto</label>
-          <div class="relative inline-block group cursor-pointer" onclick="document.getElementById('client-avatar-input').click()">
-            <img id="client-avatar-preview" src="https://placehold.co/100x100/ff66b2/ffffff?text=CL" class="w-16 h-16 rounded-2xl object-cover border-2 border-[#ff66b2] mx-auto shadow-lg" alt="Avatar">
+          <label class="block text-xs font-semibold text-gray-400 uppercase tracking-wider">Foto de Perfil</label>
+          <div class="relative inline-block group cursor-pointer" onclick="document.getElementById('avatar-input').click()">
+            <img id="settings-avatar-preview" src="https://placehold.co/100x100/ff66b2/ffffff?text=ML" class="w-20 h-20 rounded-2xl object-cover border-2 border-[#ff66b2] mx-auto shadow-lg" alt="Previsualizar">
+            <div class="absolute inset-0 bg-black/60 rounded-2xl flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+              <i data-lucide="camera" class="w-5 h-5 text-white"></i>
+            </div>
           </div>
-          <input type="file" id="client-avatar-input" accept="image/*" class="hidden">
+          <input type="file" id="avatar-input" accept="image/*" class="hidden">
+          <p class="text-[10px] text-gray-500">Haz clic en la imagen para subir una nueva foto.</p>
         </div>
         <div class="space-y-1.5">
-          <label class="block text-xs font-semibold text-gray-400 uppercase">Nombre del Cliente</label>
-          <input type="text" id="client-name" required placeholder="Ej. Juan Pérez" class="w-full bg-gray-900 border border-gray-800 rounded-xl px-4 py-3 focus:border-[#ff66b2] outline-none text-white text-sm" />
+          <label class="block text-xs font-semibold text-gray-400 uppercase tracking-wider">Nombre del Propietario</label>
+          <input type="text" id="settings-username" required placeholder="Mónica López" class="w-full bg-gray-900 border border-gray-800 rounded-2xl px-4 py-3 focus:border-[#ff66b2] outline-none text-white text-sm" />
         </div>
-        <div class="space-y-1.5">
-          <label class="block text-xs font-semibold text-gray-400 uppercase">Deuda Inicial ($)</label>
-          <input type="number" id="client-debt" step="0.01" min="0" placeholder="0.00" class="w-full bg-gray-900 border border-gray-800 rounded-xl px-4 py-3 focus:border-[#ff66b2] outline-none text-white text-sm" />
-        </div>
-        <button type="submit" class="w-full bg-gradient-to-r from-[#ff66b2] to-[#ff1a75] text-white font-bold py-3.5 rounded-xl text-xs transition-colors shadow-md">Guardar Cliente</button>
+        <button type="submit" class="w-full bg-gradient-to-r from-[#ff66b2] to-[#ff1a75] text-white font-bold py-3.5 rounded-2xl text-xs transition-colors shadow-md">
+          Guardar Cambios
+        </button>
       </form>
     </div>
   </div>
 
-  <!-- MODAL DETALLE CLIENTE (PAGOS) -->
-  <div id="client-details-modal" class="fixed inset-0 bg-black/70 backdrop-blur-md flex items-center justify-center p-4 z-50 hidden opacity-0 transition-all duration-300">
-    <div class="bg-gray-950/95 backdrop-blur-xl rounded-3xl shadow-2xl border border-white/10 w-full max-w-sm overflow-hidden transform scale-95 transition-all duration-300" id="client-details-content">
+  <div id="password-settings-modal" class="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 z-50 hidden opacity-0 transition-all duration-300">
+    <div class="bg-gray-950/95 backdrop-blur-xl rounded-3xl shadow-2xl border border-white/10 w-full max-w-sm overflow-hidden transform scale-95 transition-all duration-300" id="password-settings-content">
       <div class="flex justify-between items-center p-6 border-b border-gray-800">
-        <div class="flex items-center gap-3">
-          <img id="detail-client-avatar" src="" class="w-10 h-10 rounded-lg object-cover border border-[#ff66b2]">
-          <div>
-            <h3 id="detail-client-name" class="text-base font-bold text-white leading-tight"></h3>
-            <span class="text-[10px] text-gray-400">Cliente Registrado</span>
-          </div>
-        </div>
-        <button onclick="closeClientDetails()" class="text-gray-400 hover:text-white transition-colors"><i data-lucide="x" class="w-5 h-5"></i></button>
+        <h3 class="text-lg font-bold flex items-center gap-2">
+          <i data-lucide="key" class="text-[#ff1a75] w-5 h-5"></i>
+          <span class="text-white">Contraseña y Seguridad</span>
+        </h3>
+        <button onclick="window.closePasswordSettingsModal()" class="text-gray-400 hover:text-white transition-colors">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
       </div>
-      <div class="p-6 space-y-5">
-        <div class="bg-amber-500/10 border border-amber-500/20 rounded-2xl p-4 text-center">
-          <span class="text-[10px] font-bold text-amber-400 uppercase tracking-wider block mb-1">Deuda Actual Pendiente</span>
-          <p id="detail-client-debt" class="text-3xl font-black text-white">$0.00</p>
+      <form id="password-settings-form" class="p-6 space-y-4">
+        <div class="space-y-1.5">
+          <label class="block text-xs font-semibold text-gray-400 uppercase tracking-wider">Cambiar Contraseña</label>
+          <input type="password" id="settings-current-pwd" required placeholder="Contraseña Actual" class="w-full bg-gray-950 border border-gray-800 rounded-2xl px-4 py-3 focus:border-[#ff66b2] outline-none text-white text-sm" />
         </div>
-        
-        <form id="client-payment-form" class="space-y-3 bg-gray-900/50 p-4 rounded-2xl border border-gray-800">
-          <h4 class="text-xs font-bold text-emerald-400 flex items-center gap-1"><i data-lucide="check-circle" class="w-4 h-4"></i> Registrar Abono o Pago</h4>
-          <div class="space-y-1.5">
-            <label class="block text-[10px] text-gray-400 uppercase font-semibold">Monto del Abono</label>
-            <input type="number" id="client-pay-amount" step="0.01" min="0.01" required placeholder="0.00" class="w-full bg-gray-950 border border-gray-800 rounded-xl px-3 py-2 text-sm text-white focus:outline-none">
-          </div>
-          <div class="space-y-1.5">
-            <label class="block text-[10px] text-gray-400 uppercase font-semibold">Recibir en Cuenta</label>
-            <select id="client-pay-account" required class="w-full bg-gray-950 border border-gray-800 rounded-xl px-3 py-2 text-xs text-white focus:outline-none cursor-pointer"></select>
-          </div>
-          <button type="submit" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-2.5 rounded-xl text-xs transition-colors mt-2 shadow-md">
-            Aplicar Pago a Deuda
-          </button>
-        </form>
-
-        <div class="flex gap-2 pt-2">
-          <button id="btn-edit-client" class="flex-1 bg-gray-800 text-gray-300 py-2.5 rounded-xl text-xs font-bold hover:bg-gray-700 transition-colors">Editar Perfil</button>
-          <button id="btn-delete-client" class="flex-1 bg-rose-600/20 text-rose-400 border border-rose-500/30 py-2.5 rounded-xl text-xs font-bold hover:bg-rose-500/30 transition-colors">Eliminar</button>
+        <div class="space-y-1.5">
+          <input type="password" id="settings-new-pwd" required placeholder="Ingresa clave nueva" class="w-full bg-gray-950 border border-gray-800 rounded-2xl px-4 py-3 focus:border-[#ff66b2] outline-none text-white text-sm" />
         </div>
+        <div class="space-y-1.5">
+          <input type="password" id="settings-confirm-pwd" required placeholder="Repite la clave nueva" class="w-full bg-gray-950 border border-gray-800 rounded-2xl px-4 py-3 focus:border-[#ff66b2] outline-none text-white text-sm" />
+        </div>
+        <div id="password-settings-error" class="text-rose-500 text-xs font-medium flex items-center gap-2 bg-rose-500/10 py-2.5 px-3 rounded-xl border border-rose-500/20 hidden">
+          <i data-lucide="alert-circle" class="w-3.5 h-3.5 flex-shrink-0"></i>
+          <span id="password-settings-error-text">Las contraseñas no coinciden.</span>
+        </div>
+        <button type="submit" class="w-full bg-gradient-to-r from-[#ff1a75] to-[#ff66b2] text-white font-bold py-3.5 rounded-2xl text-xs transition-colors shadow-md">
+          Actualizar Clave
+        </button>
+      </form>
+      <div id="biometric-settings-section" class="px-6 pb-6 pt-2 space-y-2">
+        <div class="h-px w-full bg-gray-800/80 my-4"></div>
+        <label class="block text-xs font-semibold text-gray-400 uppercase tracking-wider">Acceso Rápido Biométrico</label>
+        <button type="button" id="btn-toggle-biometrics" class="w-full flex items-center justify-center gap-2 py-3 bg-gray-950 hover:bg-gray-900 text-gray-300 rounded-2xl border border-gray-800 text-xs font-semibold transition-colors shadow-sm">
+          <i data-lucide="fingerprint" class="w-4 h-4 text-[#ffb3d9]"></i>
+          <span id="biometrics-btn-text">Cargando soporte...</span>
+        </button>
+        <p class="text-[10px] text-gray-500 text-center">Permite desbloquear tu bóveda de forma instantánea usando Face ID o Touch ID en este dispositivo.</p>
       </div>
     </div>
   </div>
+
+  <div id="confirm-modal" class="fixed inset-0 bg-black/70 backdrop-blur-md flex items-center justify-center p-4 z-[120] hidden opacity-0 transition-all duration-300">
 
   <!-- MODAL MERCANCÍA -->
   <div id="inventory-modal" class="fixed inset-0 bg-black/70 backdrop-blur-md flex items-center justify-center p-4 z-50 hidden opacity-0 transition-all duration-300">
@@ -2059,12 +2059,72 @@
     window.closeAccountManager = () => { document.getElementById('accounts-modal').classList.add('opacity-0', 'hidden'); };
     window.openSubcategoryManager = () => { document.getElementById('subcategories-modal').classList.remove('hidden', 'opacity-0'); };
     window.closeSubcategoryManager = () => { document.getElementById('subcategories-modal').classList.add('opacity-0', 'hidden'); };
-    window.openProfileSettingsModal = () => { document.getElementById('profile-settings-modal').classList.remove('hidden', 'opacity-0'); };
-    window.closeProfileSettingsModal = () => { document.getElementById('profile-settings-modal').classList.add('opacity-0', 'hidden'); };
-    window.openPasswordSettingsModal = () => { document.getElementById('password-settings-modal').classList.remove('hidden', 'opacity-0'); };
-    window.closePasswordSettingsModal = () => { document.getElementById('password-settings-modal').classList.add('opacity-0', 'hidden'); };
-    window.openHoverImagesModal = () => { document.getElementById('hover-images-modal').classList.remove('hidden', 'opacity-0'); };
-    window.closeHoverImagesModal = () => { document.getElementById('hover-images-modal').classList.add('opacity-0', 'hidden'); };
+    
+    window.openProfileSettingsModal = () => {
+      document.getElementById('profile-dropdown-menu')?.classList.add('hidden');
+      const modal = document.getElementById('profile-settings-modal');
+      const content = document.getElementById('profile-settings-content');
+      const usernameInput = document.getElementById('settings-username');
+      if (usernameInput) usernameInput.value = document.getElementById('user-display-name').textContent;
+      if (modal && content) {
+        modal.classList.remove('hidden');
+        setTimeout(() => { modal.classList.remove('opacity-0'); content.classList.remove('scale-95'); }, 10);
+      }
+    };
+
+    window.closeProfileSettingsModal = () => {
+      const modal = document.getElementById('profile-settings-modal');
+      const content = document.getElementById('profile-settings-content');
+      if (modal && content) {
+        modal.classList.add('opacity-0'); content.classList.add('scale-95');
+        setTimeout(() => modal.classList.add('hidden'), 300);
+      }
+    };
+
+    window.openPasswordSettingsModal = () => {
+      document.getElementById('profile-dropdown-menu')?.classList.add('hidden');
+      const modal = document.getElementById('password-settings-modal');
+      const content = document.getElementById('password-settings-content');
+      const form = document.getElementById('password-settings-form');
+      if (form) form.reset();
+      document.getElementById('password-settings-error')?.classList.add('hidden');
+      updateBiometricSettingsUI();
+      if (modal && content) {
+        modal.classList.remove('hidden');
+        setTimeout(() => { modal.classList.remove('opacity-0'); content.classList.remove('scale-95'); }, 10);
+      }
+    };
+
+    window.closePasswordSettingsModal = () => {
+      const modal = document.getElementById('password-settings-modal');
+      const content = document.getElementById('password-settings-content');
+      if (modal && content) {
+        modal.classList.add('opacity-0'); content.classList.add('scale-95');
+        setTimeout(() => modal.classList.add('hidden'), 300);
+      }
+    };
+
+    window.openHoverImagesModal = () => {
+      document.getElementById('preview-img-ingreso').src = hoverImagesData.ingreso || '';
+      document.getElementById('preview-img-gasto').src = hoverImagesData.gasto || '';
+      document.getElementById('preview-img-ahorro').src = hoverImagesData.ahorro || '';
+      const modal = document.getElementById('hover-images-modal');
+      const content = document.getElementById('hover-images-content');
+      if (modal && content) {
+        modal.classList.remove('hidden');
+        setTimeout(() => { modal.classList.remove('opacity-0'); content.classList.remove('scale-95'); }, 10);
+      }
+    };
+
+    window.closeHoverImagesModal = () => {
+      const modal = document.getElementById('hover-images-modal');
+      const content = document.getElementById('hover-images-content');
+      if (modal && content) {
+        modal.classList.add('opacity-0'); content.classList.add('scale-95');
+        setTimeout(() => modal.classList.add('hidden'), 300);
+      }
+    };
+
     window.showConfirm = (t, d, c, a=false) => { document.getElementById('confirm-title').textContent = t; document.getElementById('confirm-text').textContent = d; confirmCallback=c; document.getElementById('confirm-modal').classList.remove('hidden', 'opacity-0'); document.getElementById('confirm-action-btn').classList.toggle('hidden', a); };
     window.closeConfirm = () => { document.getElementById('confirm-modal').classList.add('opacity-0', 'hidden'); };
     window.triggerConfirm = () => { if(confirmCallback) confirmCallback(); window.closeConfirm(); };
@@ -2125,6 +2185,110 @@
       document.getElementById('theme-icon').setAttribute('data-lucide', document.body.classList.contains('light-theme') ? 'moon' : 'sun');
       lucide.createIcons();
       renderApp();
+    });
+
+    // Guardado de configuraciones de perfil y contraseña
+    document.getElementById('avatar-input')?.addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        const img = new Image();
+        img.onload = () => {
+          const canvas = document.createElement('canvas');
+          canvas.width = 120; canvas.height = 120;
+          canvas.getContext('2d').drawImage(img, 0, 0, 120, 120);
+          document.getElementById('settings-avatar-preview').src = canvas.toDataURL('image/jpeg', 0.8);
+        };
+        img.src = event.target.result;
+      };
+      reader.readAsDataURL(file);
+    });
+
+    document.getElementById('profile-settings-form')?.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const name = document.getElementById('settings-username').value.trim();
+      const avatar = document.getElementById('settings-avatar-preview').src;
+      try {
+        await setDoc(doc(db, 'artifacts', APP_ID, 'public', 'data', 'settings', 'profile'), { name, avatar, timestamp: new Date().toISOString() }, { merge: true });
+        window.closeProfileSettingsModal();
+      } catch (err) { console.error(err); }
+    });
+
+    document.getElementById('password-settings-form')?.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const curr = document.getElementById('settings-current-pwd').value;
+      const newVal = document.getElementById('settings-new-pwd').value;
+      const confVal = document.getElementById('settings-confirm-pwd').value;
+      const errBox = document.getElementById('password-settings-error');
+      const errText = document.getElementById('password-settings-error-text');
+
+      if (curr !== vaultPassword) {
+        errText.textContent = "La contraseña actual es incorrecta."; errBox.classList.remove('hidden'); return;
+      }
+      if (newVal !== confVal) {
+        errText.textContent = "Las nuevas contraseñas no coinciden."; errBox.classList.remove('hidden'); return;
+      }
+      if (newVal.length < 4) {
+        errText.textContent = "Mínimo 4 caracteres."; errBox.classList.remove('hidden'); return;
+      }
+      try {
+        await setDoc(doc(db, 'artifacts', APP_ID, 'public', 'data', 'settings', 'security'), { password: newVal, timestamp: new Date().toISOString() }, { merge: true });
+        window.closePasswordSettingsModal();
+      } catch (err) { console.error(err); }
+    });
+
+    document.getElementById('btn-toggle-biometrics')?.addEventListener('click', async () => {
+      if (localStorage.getItem('vault_biometric_id')) {
+        localStorage.removeItem('vault_biometric_id');
+        updateBiometricSettingsUI(); updateBiometricLoginUI();
+        window.showConfirm("Biometría Desactivada", "Dispositivo desvinculado.", null, true);
+      } else {
+        if (await enrollBiometrics()) {
+          updateBiometricSettingsUI(); updateBiometricLoginUI();
+          window.showConfirm("¡Dispositivo Vinculado!", "Face ID / Touch ID activado.", null, true);
+        } else {
+          window.showConfirm("Error", "No se pudo activar.", null, true);
+        }
+      }
+    });
+
+    ['ingreso', 'gasto', 'ahorro'].forEach(type => {
+      document.getElementById(`img-input-${type}`)?.addEventListener('change', (e) => {
+        const file = e.target.files[0];
+        if (!file) return;
+        const reader = new FileReader();
+        reader.onload = (event) => {
+          const img = new Image();
+          img.onload = () => {
+            const canvas = document.createElement('canvas');
+            let w = img.width, h = img.height, max = 250;
+            if (w > h) { if (w > max) { h *= max / w; w = max; } } else { if (h > max) { w *= max / h; h = max; } }
+            canvas.width = w; canvas.height = h;
+            canvas.getContext('2d').drawImage(img, 0, 0, w, h);
+            document.getElementById(`preview-img-${type}`).src = canvas.toDataURL('image/jpeg', 0.7);
+          };
+          img.src = event.target.result;
+        };
+        reader.readAsDataURL(file);
+      });
+    });
+
+    document.getElementById('hover-images-form')?.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const newImages = {
+        ingreso: document.getElementById('preview-img-ingreso').src,
+        gasto: document.getElementById('preview-img-gasto').src,
+        ahorro: document.getElementById('preview-img-ahorro').src
+      };
+      if (newImages.ingreso.includes(window.location.href)) newImages.ingreso = hoverImagesData.ingreso;
+      if (newImages.gasto.includes(window.location.href)) newImages.gasto = hoverImagesData.gasto;
+      if (newImages.ahorro.includes(window.location.href)) newImages.ahorro = hoverImagesData.ahorro;
+      
+      try {
+        await setDoc(doc(db, 'artifacts', APP_ID, 'public', 'data', 'settings', 'hoverImages'), newImages, { merge: true });
+        window.closeHoverImagesModal();
+      } catch (err) { console.error(err); }
     });
 
     function getMonthExportData() {
