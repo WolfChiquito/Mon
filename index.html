@@ -1783,13 +1783,279 @@
       });
     };
 
+    let editingAccountId = null;
+
+    function resetAccountForm() {
+      editingAccountId = null;
+      const title = document.getElementById('account-form-title');
+      const emoji = document.getElementById('new-acc-emoji');
+      const name = document.getElementById('new-acc-name');
+      const balance = document.getElementById('new-acc-balance');
+      const date = document.getElementById('new-acc-date');
+      const typeRadio = document.querySelector('input[name="acc-type"][value="debito"]');
+      const btn = document.getElementById('btn-save-account');
+      const cancelBtn = document.getElementById('btn-cancel-account-edit');
+
+      if (title) title.textContent = "Crear Cuenta";
+      if (emoji) emoji.value = '💵';
+      if (name) name.value = '';
+      if (balance) balance.value = '';
+      if (date) date.value = new Date().toISOString().split('T')[0];
+      if (typeRadio) typeRadio.checked = true;
+      if (btn) btn.textContent = "+ Agregar Cuenta";
+      if (cancelBtn) cancelBtn.classList.add('hidden');
+    }
+
+    const cancelAccEditBtn = document.getElementById('btn-cancel-account-edit');
+    if (cancelAccEditBtn) {
+      cancelAccEditBtn.addEventListener('click', resetAccountForm);
+    }
+
+    function renderAccountsManagerList() {
+      const container = document.getElementById('accounts-manager-list');
+      if (!container) return;
+      container.innerHTML = '';
+
+      accounts.forEach(acc => {
+        const typeBadge = acc.accountType === 'credito' 
+          ? `<span class="text-[9px] font-bold text-rose-400 bg-rose-500/10 border border-rose-500/20 px-1.5 py-0.5 rounded ml-2 uppercase">Crédito</span>` 
+          : '';
+          
+        container.innerHTML += `
+          <div class="flex items-center justify-between bg-gray-900/60 p-2.5 rounded-xl border border-gray-800">
+            <div class="flex flex-col">
+              <span class="text-sm font-semibold text-white flex items-center gap-2">
+                <span class="text-lg bg-gray-850 px-1.5 py-0.5 rounded">${acc.emoji}</span>
+                ${acc.name} ${typeBadge}
+              </span>
+              ${acc.initialBalance > 0 ? `<span class="text-[10px] text-gray-400 mt-1">S. Inicial: ${formatCurrency(acc.initialBalance)} (${acc.initialBalanceDate})</span>` : ''}
+            </div>
+            <div class="flex items-center gap-1">
+              <button onclick="window.editAccount('${acc.id}')" class="p-1 text-gray-400 hover:text-[#ffb3d9] rounded-lg hover:bg-pink-500/10 transition-colors" title="Editar">
+                <i data-lucide="edit-3" class="w-4 h-4"></i>
+              </button>
+              <button onclick="window.deleteAccount('${acc.id}')" class="p-1 text-gray-400 hover:text-rose-400 rounded-lg hover:bg-rose-500/10 transition-colors" title="Eliminar">
+                <i data-lucide="trash" class="w-4 h-4"></i>
+              </button>
+            </div>
+          </div>
+        `;
+      });
+      lucide.createIcons();
+    }
+
+    function editAccount(id) {
+      const acc = accounts.find(a => a.id === id);
+      if (!acc) return;
+      editingAccountId = id;
+      
+      const title = document.getElementById('account-form-title');
+      const emoji = document.getElementById('new-acc-emoji');
+      const name = document.getElementById('new-acc-name');
+      const balance = document.getElementById('new-acc-balance');
+      const date = document.getElementById('new-acc-date');
+      const typeRadio = document.querySelector(`input[name="acc-type"][value="${acc.accountType || 'debito'}"]`);
+      const btn = document.getElementById('btn-save-account');
+      const cancelBtn = document.getElementById('btn-cancel-account-edit');
+
+      if (title) title.textContent = "Editar Cuenta";
+      if (emoji) emoji.value = acc.emoji;
+      if (name) name.value = acc.name;
+      if (balance) balance.value = acc.initialBalance || '';
+      if (date) date.value = acc.initialBalanceDate || new Date().toISOString().split('T')[0];
+      if (typeRadio) typeRadio.checked = true;
+      if (btn) btn.textContent = "Actualizar Cuenta";
+      if (cancelBtn) cancelBtn.classList.remove('hidden');
+    }
+
+    const newAccForm = document.getElementById('new-account-form');
+    if (newAccForm) {
+      newAccForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const emojiInput = document.getElementById('new-acc-emoji');
+        const nameInput = document.getElementById('new-acc-name');
+        const balanceInput = document.getElementById('new-acc-balance');
+        const dateInput = document.getElementById('new-acc-date');
+        const typeInput = document.querySelector('input[name="acc-type"]:checked');
+        const initModeInput = document.querySelector('input[name="acc-init-mode"]:checked');
+
+        const emoji = emojiInput ? emojiInput.value.trim() : '💳';
+        const name = nameInput ? nameInput.value.trim() : '';
+        const initialBalance = balanceInput ? (parseFloat(balanceInput.value) || 0) : 0;
+        const initialBalanceDate = dateInput ? dateInput.value : new Date().toISOString().split('T')[0];
+        const accountType = typeInput ? typeInput.value : 'debito';
+        const initMode = initModeInput ? initModeInput.value : 'preexistente';
+
+        if (!name) return;
+
+        try {
+          if (editingAccountId) {
+            if (initMode === 'ingreso' && initialBalance > 0) {
+              await addDoc(collection(db, 'artifacts', APP_ID, 'public', 'data', 'movements'), {
+                date: initialBalanceDate, type: 'ingreso', amount: initialBalance, concept: 'Saldo Inicial Registrado', subcategory: 'Sueldo', subcategoryEmoji: '💼', accountId: editingAccountId, account: name, timestamp: new Date().toISOString()
+              });
+              await updateDoc(doc(db, 'artifacts', APP_ID, 'public', 'data', 'accounts', editingAccountId), { name: name, emoji: emoji, initialBalance: 0, initialBalanceDate: initialBalanceDate, accountType: accountType });
+            } else {
+              await updateDoc(doc(db, 'artifacts', APP_ID, 'public', 'data', 'accounts', editingAccountId), { name: name, emoji: emoji, initialBalance: initialBalance, initialBalanceDate: initialBalanceDate, accountType: accountType });
+            }
+            movements.forEach(async (m) => {
+              if (m.accountId === editingAccountId) await updateDoc(doc(db, 'artifacts', APP_ID, 'public', 'data', 'movements', m.id), { account: name });
+            });
+          } else {
+            const newDocRef = await addDoc(collection(db, 'artifacts', APP_ID, 'public', 'data', 'accounts'), {
+              name: name, emoji: emoji, initialBalance: initMode === 'preexistente' ? initialBalance : 0, initialBalanceDate: initialBalanceDate, isDefault: false, accountType: accountType, timestamp: new Date().toISOString()
+            });
+
+            if (initMode === 'ingreso' && initialBalance > 0) {
+              await addDoc(collection(db, 'artifacts', APP_ID, 'public', 'data', 'movements'), {
+                date: initialBalanceDate, type: 'ingreso', amount: initialBalance, concept: 'Saldo Inicial Registrado', subcategory: 'Sueldo', subcategoryEmoji: '💼', accountId: newDocRef.id, account: name, timestamp: new Date().toISOString()
+              });
+            }
+          }
+          resetAccountForm();
+          renderAccountsManagerList();
+        } catch (error) { console.error(error); }
+      });
+    }
+
+    function deleteAccount(id) {
+      showConfirm("¿Eliminar cuenta?", "Esta acción no se puede deshacer.", async () => {
+        try {
+          await deleteDoc(doc(db, 'artifacts', APP_ID, 'public', 'data', 'accounts', id));
+          if (editingAccountId === id) resetAccountForm();
+          renderAccountsManagerList();
+        } catch (error) { console.error(error); }
+      });
+    }
+
+    function openAccountDetails(accountId) {
+      const acc = accounts.find(a => a.id === accountId);
+      if (!acc) return;
+
+      let initialBalance = parseFloat(acc.initialBalance || 0);
+      let incomeTotal = 0;
+      let expenseTotal = 0;
+
+      const accMovements = movements.filter(m => m.accountId === acc.id || m.account === acc.name);
+      accMovements.forEach(m => {
+        if (m.type === 'ingreso' || m.type === 'ahorro') incomeTotal += m.amount;
+        else if (m.type === 'gasto') expenseTotal += m.amount; 
+      });
+
+      const currentBalance = initialBalance + incomeTotal - expenseTotal;
+
+      const detailAccEmoji = document.getElementById('detail-acc-emoji');
+      const detailAccName = document.getElementById('detail-acc-name');
+      const detailAccType = document.getElementById('detail-acc-type');
+      const detailAccInit = document.getElementById('detail-acc-init');
+      const detailAccCurrent = document.getElementById('detail-acc-current');
+      const detailAccIncome = document.getElementById('detail-acc-income');
+      const detailAccExpense = document.getElementById('detail-acc-expense');
+
+      if (detailAccEmoji) detailAccEmoji.textContent = acc.emoji;
+      if (detailAccName) detailAccName.textContent = acc.name;
+      
+      if (detailAccType) {
+        if (acc.accountType === 'credito') {
+          detailAccType.textContent = 'Crédito';
+          detailAccType.className = 'text-[9px] font-extrabold px-2 py-0.5 rounded-full bg-rose-500/10 text-rose-400 border border-rose-500/20 uppercase tracking-wider';
+        } else {
+          detailAccType.textContent = 'Cartera';
+          detailAccType.className = 'text-[9px] font-extrabold px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 uppercase tracking-wider';
+        }
+      }
+
+      if (detailAccInit) detailAccInit.textContent = formatCurrency(initialBalance);
+      if (detailAccCurrent) detailAccCurrent.textContent = formatCurrency(currentBalance);
+      if (detailAccIncome) detailAccIncome.textContent = formatCurrency(incomeTotal);
+      if (detailAccExpense) detailAccExpense.textContent = formatCurrency(expenseTotal);
+
+      const recentListContainer = document.getElementById('detail-recent-list');
+      if (recentListContainer) {
+        recentListContainer.innerHTML = '';
+        const recentMovements = accMovements.slice(0, 5);
+        if (recentMovements.length === 0) {
+          recentListContainer.innerHTML = `<p class="text-xs text-gray-500 text-center py-4">Sin movimientos registrados aún en esta cuenta.</p>`;
+        } else {
+          recentMovements.forEach(m => {
+            const typeBadgeColor = m.type === 'ingreso' ? 'text-pink-400' : (m.type === 'gasto' ? 'text-rose-400' : 'text-fuchsia-400');
+            const prefix = m.type === 'ingreso' ? '+' : '-';
+            recentListContainer.innerHTML += `
+              <div class="flex items-center justify-between p-3 rounded-2xl bg-gray-900 border border-gray-850">
+                <div class="flex items-center gap-2.5 min-w-0">
+                  <span class="text-lg bg-gray-950 px-2 py-1 rounded-xl border border-gray-800">${m.subcategoryEmoji || '🏷️'}</span>
+                  <div class="flex flex-col truncate">
+                    <span class="text-xs font-bold text-white truncate max-w-[150px]">${m.concept}</span>
+                    <span class="text-[9px] text-gray-500">${m.date}</span>
+                  </div>
+                </div>
+                <span class="text-xs font-bold ${typeBadgeColor} whitespace-nowrap">${prefix}${formatCurrency(m.amount)}</span>
+              </div>
+            `;
+          });
+        }
+      }
+
+      const btnFilterHistory = document.getElementById('btn-detail-filter-history');
+      if (btnFilterHistory) {
+        btnFilterHistory.onclick = () => {
+          closeAccountDetails();
+          const historyContent = document.getElementById('history-content');
+          const historyChevron = document.getElementById('history-chevron');
+          if (historyContent && historyContent.classList.contains('hidden')) {
+            historyContent.classList.remove('hidden');
+            if (historyChevron) historyChevron.classList.add('rotate-180');
+          }
+          const searchAccSelector = document.getElementById('search-account');
+          if (searchAccSelector) {
+            searchAccSelector.value = acc.id;
+            searchAccount = acc.id;
+          }
+          renderYearSummary();
+          renderTable();
+          const targetSection = document.getElementById('historical-section');
+          if (targetSection) targetSection.scrollIntoView({ behavior: 'smooth' });
+        };
+      }
+
+      const btnEditAcc = document.getElementById('btn-detail-edit-acc');
+      if (btnEditAcc) {
+        btnEditAcc.onclick = () => {
+          closeAccountDetails();
+          window.openAccountManager();
+          window.editAccount(acc.id);
+        };
+      }
+
+      const modalElement = document.getElementById('account-details-modal');
+      const content = document.getElementById('account-details-content');
+      if (modalElement && content) {
+        modalElement.classList.remove('hidden');
+        setTimeout(() => {
+          modalElement.classList.remove('opacity-0');
+          content.classList.remove('scale-95');
+        }, 10);
+      }
+      lucide.createIcons();
+    }
+
+    function closeAccountDetails() {
+      const modalElement = document.getElementById('account-details-modal');
+      const content = document.getElementById('account-details-content');
+      if (modalElement && content) {
+        modalElement.classList.add('opacity-0');
+        content.classList.add('scale-95');
+        setTimeout(() => modalElement.classList.add('hidden'), 300);
+      }
+    }
+
     // Funciones globales, menús e inicializaciones
     window.selectType = selectType;
     window.openModal = openModal;
     window.closeModal = closeModal;
-    window.openAccountDetails = (id) => { /* Misma función para mantener todo íntegro */ }; 
-    window.closeAccountDetails = () => { document.getElementById('account-details-modal').classList.add('opacity-0'); setTimeout(()=>document.getElementById('account-details-modal').classList.add('hidden'),300); };
-    window.openAccountManager = () => { document.getElementById('accounts-modal').classList.remove('hidden', 'opacity-0'); };
+    window.openAccountDetails = openAccountDetails; 
+    window.closeAccountDetails = closeAccountDetails;
+    window.openAccountManager = () => { resetAccountForm(); renderAccountsManagerList(); document.getElementById('accounts-modal').classList.remove('hidden', 'opacity-0'); };
     window.closeAccountManager = () => { document.getElementById('accounts-modal').classList.add('opacity-0', 'hidden'); };
     window.openSubcategoryManager = () => { document.getElementById('subcategories-modal').classList.remove('hidden', 'opacity-0'); };
     window.closeSubcategoryManager = () => { document.getElementById('subcategories-modal').classList.add('opacity-0', 'hidden'); };
@@ -1809,11 +2075,38 @@
     window.closeClientDetails = closeClientDetails;
     window.openInventoryModal = openInventoryModal;
     window.closeInventoryModal = closeInventoryModal;
+    window.editAccount = editAccount;
+    window.deleteAccount = deleteAccount;
 
     // Colapsables
     document.getElementById('toggle-accounts-btn')?.addEventListener('click', () => { document.getElementById('accounts-content').classList.toggle('hidden'); document.getElementById('accounts-chevron').classList.toggle('rotate-180'); });
     document.getElementById('toggle-history-btn')?.addEventListener('click', () => { document.getElementById('history-content').classList.toggle('hidden'); document.getElementById('history-chevron').classList.toggle('rotate-180'); });
     document.getElementById('toggle-business-btn')?.addEventListener('click', () => { document.getElementById('business-content').classList.toggle('hidden'); document.getElementById('business-chevron').classList.toggle('rotate-180'); });
+
+    // Event listeners del Calendario
+    document.getElementById('btn-today')?.addEventListener('click', () => { currentDate = new Date(); renderApp(); });
+    document.getElementById('month-select')?.addEventListener('change', (e) => { currentDate = new Date(currentDate.getFullYear(), parseInt(e.target.value), 1); renderApp(); });
+    document.getElementById('year-select')?.addEventListener('change', (e) => { currentDate = new Date(parseInt(e.target.value), currentDate.getMonth(), 1); renderApp(); });
+    document.getElementById('btn-prev-month')?.addEventListener('click', () => { currentDate = new Date(currentDate.getFullYear(), currentDate.getMonth() - 1, 1); renderApp(); });
+    document.getElementById('btn-next-month')?.addEventListener('click', () => { currentDate = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 1); renderApp(); });
+
+    // Event listeners de Búsqueda Histórica
+    document.getElementById('search-year')?.addEventListener('change', (e) => { searchYear = Number(e.target.value); renderYearSummary(); renderTable(); lucide.createIcons(); });
+    document.getElementById('search-month')?.addEventListener('change', (e) => { searchMonth = e.target.value; renderYearSummary(); renderTable(); lucide.createIcons(); });
+    document.getElementById('search-account')?.addEventListener('change', (e) => { searchAccount = e.target.value; renderYearSummary(); renderTable(); lucide.createIcons(); });
+    document.getElementById('search-input')?.addEventListener('input', (e) => { searchQuery = e.target.value; renderTable(); lucide.createIcons(); });
+
+    // Menús Desplegables
+    document.getElementById('profile-dropdown-btn')?.addEventListener('click', (e) => { e.stopPropagation(); document.getElementById('profile-dropdown-menu')?.classList.toggle('hidden'); });
+    document.getElementById('btn-export-menu')?.addEventListener('click', (e) => { e.stopPropagation(); document.getElementById('export-dropdown')?.classList.toggle('hidden'); });
+    document.addEventListener('click', (e) => {
+      const exportMenu = document.getElementById('export-dropdown');
+      const exportBtn = document.getElementById('btn-export-menu');
+      if (exportMenu && exportBtn && !exportMenu.contains(e.target) && !exportBtn.contains(e.target)) { exportMenu.classList.add('hidden'); }
+      const profileMenu = document.getElementById('profile-dropdown-menu');
+      const profileBtn = document.getElementById('profile-dropdown-btn');
+      if (profileMenu && profileBtn && !profileMenu.contains(e.target) && !profileBtn.contains(e.target)) { profileMenu.classList.add('hidden'); }
+    });
 
     document.getElementById('login-form')?.addEventListener('submit', (e) => {
       e.preventDefault();
