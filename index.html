@@ -2219,6 +2219,13 @@
     window.closeInventoryModal = closeInventoryModal;
     window.editAccount = editAccount;
     window.deleteAccount = deleteAccount;
+    window.editInventory = openInventoryModal;
+    window.deleteInventory = (id) => {
+      window.showConfirm("¿Eliminar artículo?", "Se borrará del inventario permanentemente.", async () => {
+        try { await deleteDoc(doc(db, 'artifacts', APP_ID, 'public', 'data', 'inventory', id)); } 
+        catch (err) { console.error(err); }
+      });
+    };
 
     // Colapsables
     document.getElementById('toggle-accounts-btn')?.addEventListener('click', () => { document.getElementById('accounts-content').classList.toggle('hidden'); document.getElementById('accounts-chevron').classList.toggle('rotate-180'); });
@@ -2261,6 +2268,24 @@
         setTimeout(() => err.classList.remove('animate-shake'), 500);
       }
     });
+
+    document.getElementById('btn-biometric-login')?.addEventListener('click', async () => {
+      const success = await authenticateBiometrics();
+      if (success) {
+        document.getElementById('login-screen').classList.add('hidden');
+        document.getElementById('app-container').classList.remove('hidden');
+      } else {
+        const loginError = document.getElementById('login-error');
+        if (loginError) {
+          loginError.querySelector('span').textContent = "Error de autenticación biométrica.";
+          loginError.classList.remove('hidden');
+          loginError.classList.add('animate-shake');
+          setTimeout(() => loginError.classList.remove('animate-shake'), 500);
+        }
+      }
+    });
+
+    document.getElementById('logout-btn')?.addEventListener('click', window.logout);
 
     document.getElementById('theme-toggle')?.addEventListener('click', () => {
       document.body.classList.toggle('light-theme');
