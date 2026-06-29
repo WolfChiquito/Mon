@@ -197,7 +197,7 @@
       <div class="inline-flex p-4 bg-gradient-to-br from-[#ff66b2]/20 to-[#ffb3d9]/5 text-[#ffb3d9] rounded-2xl mb-6 border border-[#ffb3d9]/30 shadow-lg shadow-[#ffb3d9]/10">
         <i data-lucide="lock" class="w-8 h-8 animate-pulse text-[#ffb3d9] filter drop-shadow-[0_0_8px_rgba(255,179,217,0.5)]"></i>
       </div>
-      <h2 class="text-3xl font-extrabold text-white tracking-tight mb-2 neon-text-pink">Control de cuentas 💸</h2>
+      <h2 class="text-3xl font-extrabold text-white tracking-tight mb-2 neon-text-pink">Bóveda Patrimonial</h2>
       <p class="text-gray-400 text-xs mb-8 leading-relaxed">Ingrese su clave de seguridad para acceder a su portafolio financiero</p>
       
       <form id="login-form" class="space-y-6">
@@ -242,7 +242,7 @@
           <h1 class="text-2xl md:text-3xl font-extrabold bg-gradient-to-r from-[#ffb3d9] via-[#ff1a75] to-[#ff66b2] bg-clip-text text-transparent">
             Cuentas Personales
           </h1>
-          <p class="text-gray-400 text-xs tracking-wider uppercase font-semibold">Dashboard para control de cuentas 💵</p>
+          <p class="text-gray-400 text-xs tracking-wider uppercase font-semibold">Dashboard Patrimonial</p>
         </div>
       </div>
       
@@ -2126,6 +2126,124 @@
       lucide.createIcons();
       renderApp();
     });
+
+    function getMonthExportData() {
+      const year = currentDate.getFullYear();
+      const month = currentDate.getMonth();
+      const monthSelect = document.getElementById('month-select');
+      const monthName = monthSelect ? monthSelect.options[month].text : '';
+      
+      const monthMovements = movements.filter(m => {
+        const d = new Date(m.date + 'T00:00:00');
+        return d.getFullYear() === year && d.getMonth() === month;
+      });
+      
+      return { year, monthName, monthMovements };
+    }
+
+    const btnPrint = document.getElementById('btn-print');
+    if (btnPrint) {
+      btnPrint.addEventListener('click', () => window.print());
+    }
+
+    const btnExportPdf = document.getElementById('btn-export-pdf');
+    if (btnExportPdf) {
+      btnExportPdf.addEventListener('click', () => {
+        document.getElementById('export-dropdown')?.classList.add('hidden');
+        const { year, monthName, monthMovements } = getMonthExportData();
+        
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF();
+        
+        doc.setFontSize(18);
+        doc.text(`Resumen Mensual - ${monthName} ${year}`, 14, 22);
+        
+        const tableData = monthMovements.map(m => {
+          const assignedAcc = accounts.find(a => a.id === m.accountId);
+          const accountLabel = assignedAcc ? `${assignedAcc.emoji} ${assignedAcc.name}` : 'Efectivo';
+          let typeLabel = CATEGORIES[m.type]?.label || m.type;
+          return [
+            m.date,
+            typeLabel,
+            m.subcategory || 'General',
+            accountLabel,
+            m.concept,
+            (m.type === 'gasto' ? '-' : '+') + formatCurrency(m.amount)
+          ];
+        });
+        
+        let totalIngresos = 0, totalGastos = 0, totalAhorros = 0, totalVentas = 0;
+        monthMovements.forEach(m => {
+          if(m.type === 'ingreso') totalIngresos += m.amount;
+          if(m.type === 'gasto') totalGastos += m.amount;
+          if(m.type === 'ahorro') totalAhorros += m.amount;
+          if(m.type === 'venta_credito') totalVentas += m.amount;
+        });
+        
+        doc.autoTable({
+          startY: 30,
+          head: [['Fecha', 'Tipo', 'Subcategoria', 'Cuenta', 'Concepto', 'Monto']],
+          body: tableData,
+          foot: [
+            ['', '', '', '', 'Total Ingresos:', formatCurrency(totalIngresos)],
+            ['', '', '', '', 'Total Gastos:', formatCurrency(totalGastos)],
+            ['', '', '', '', 'Total Ahorros:', formatCurrency(totalAhorros)],
+            ['', '', '', '', 'Ventas a Credito:', formatCurrency(totalVentas)],
+            ['', '', '', '', 'Balance Final:', formatCurrency(totalIngresos + totalAhorros - totalGastos)]
+          ],
+          theme: 'grid',
+          headStyles: { fillColor: [255, 102, 178] },
+          footStyles: { fillColor: [253, 242, 248], textColor: [45, 19, 31], fontStyle: 'bold' }
+        });
+        
+        doc.save(`Resumen_${monthName}_${year}.pdf`);
+      });
+    }
+
+    const btnExportExcel = document.getElementById('btn-export-excel');
+    if (btnExportExcel) {
+      btnExportExcel.addEventListener('click', () => {
+        document.getElementById('export-dropdown')?.classList.add('hidden');
+        const { year, monthName, monthMovements } = getMonthExportData();
+        
+        const wsData = [
+          ['Fecha', 'Tipo', 'Subcategoria', 'Cuenta', 'Concepto', 'Monto']
+        ];
+        
+        let totalIngresos = 0, totalGastos = 0, totalAhorros = 0, totalVentas = 0;
+        
+        monthMovements.forEach(m => {
+          const assignedAcc = accounts.find(a => a.id === m.accountId);
+          const accountLabel = assignedAcc ? `${assignedAcc.emoji} ${assignedAcc.name}` : 'Efectivo';
+          let typeLabel = CATEGORIES[m.type]?.label || m.type;
+          wsData.push([
+            m.date, 
+            typeLabel, 
+            m.subcategory || 'General',
+            accountLabel,
+            m.concept, 
+            (m.type === 'gasto' ? -m.amount : m.amount)
+          ]);
+          if(m.type === 'ingreso') totalIngresos += m.amount;
+          if(m.type === 'gasto') totalGastos += m.amount;
+          if(m.type === 'ahorro') totalAhorros += m.amount;
+          if(m.type === 'venta_credito') totalVentas += m.amount;
+        });
+        
+        wsData.push([]);
+        wsData.push(['', '', '', '', 'Total Ingresos:', totalIngresos]);
+        wsData.push(['', '', '', '', 'Total Gastos:', -totalGastos]);
+        wsData.push(['', '', '', '', 'Total Ahorros:', totalAhorros]);
+        wsData.push(['', '', '', '', 'Ventas a Credito:', totalVentas]);
+        wsData.push(['', '', '', '', 'Balance Final:', totalIngresos + totalAhorros - totalGastos]);
+        
+        const ws = XLSX.utils.aoa_to_sheet(wsData);
+        const wb = XLSX.utils.book_new();
+        XLSX.utils.book_append_sheet(wb, ws, "Resumen");
+        
+        XLSX.writeFile(wb, `Resumen_${monthName}_${year}.xlsx`);
+      });
+    }
 
     // Cierre de modales con Escape y Clic Fuera
     window.addEventListener('keydown', (e) => {
