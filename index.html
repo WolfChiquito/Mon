@@ -1131,6 +1131,7 @@
         const loaded = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
         customSubcategories = loaded.length > 0 ? loaded : DEFAULT_SUBCATEGORIES;
         updateSubcategorySelectors();
+        renderSubcategoriesManagerList();
         renderApp();
       });
 
@@ -2173,6 +2174,42 @@
       }
     }
 
+    function renderSubcategoriesManagerList() {
+      const container = document.getElementById('subcategories-manager-list');
+      if (!container) return;
+      const filterVal = document.getElementById('subcat-filter')?.value || 'all';
+      container.innerHTML = '';
+
+      const filtered = customSubcategories.filter(s => filterVal === 'all' || s.type === filterVal);
+
+      if (filtered.length === 0) {
+        container.innerHTML = '<p class="text-xs text-gray-500 text-center py-4">No hay subcategorías registradas.</p>';
+        return;
+      }
+
+      filtered.forEach(s => {
+        const cat = CATEGORIES[s.type] || CATEGORIES.gasto;
+        const isDefault = s.isDefault;
+        container.innerHTML += `
+          <div class="flex items-center justify-between bg-gray-900/60 p-2.5 rounded-xl border border-gray-800">
+            <div class="flex items-center gap-3">
+              <span class="text-lg bg-gray-950 px-2 py-1 rounded-lg border border-gray-800">${s.emoji || '🏷️'}</span>
+              <div class="flex flex-col">
+                <span class="text-sm font-semibold text-white leading-none mb-1">${s.name}</span>
+                <span class="text-[9px] font-extrabold ${cat.textClass} uppercase tracking-wider">${cat.label}</span>
+              </div>
+            </div>
+            ${isDefault ? `<span class="text-[9px] text-gray-500 bg-gray-950 px-2 py-1 rounded-md font-bold border border-gray-800">Fijo</span>` : `
+              <button onclick="window.deleteSubcategory('${s.id}')" class="p-1.5 text-gray-500 hover:text-rose-450 rounded-lg hover:bg-rose-500/10 transition-colors">
+                <i data-lucide="trash" class="w-4 h-4"></i>
+              </button>
+            `}
+          </div>
+        `;
+      });
+      lucide.createIcons();
+    }
+
     // Funciones globales, menús e inicializaciones
     window.selectType = selectType;
     window.openModal = openModal;
@@ -2181,7 +2218,7 @@
     window.closeAccountDetails = closeAccountDetails;
     window.openAccountManager = () => { resetAccountForm(); renderAccountsManagerList(); document.getElementById('accounts-modal').classList.remove('hidden', 'opacity-0'); };
     window.closeAccountManager = () => { document.getElementById('accounts-modal').classList.add('opacity-0', 'hidden'); };
-    window.openSubcategoryManager = () => { document.getElementById('subcategories-modal').classList.remove('hidden', 'opacity-0'); };
+    window.openSubcategoryManager = () => { renderSubcategoriesManagerList(); document.getElementById('subcategories-modal').classList.remove('hidden', 'opacity-0'); };
     window.closeSubcategoryManager = () => { document.getElementById('subcategories-modal').classList.add('opacity-0', 'hidden'); };
     
     window.openProfileSettingsModal = () => {
@@ -2245,6 +2282,13 @@
       window.showConfirm("¿Eliminar artículo?", "Se borrará del inventario permanentemente.", async () => {
         try { await deleteDoc(doc(db, 'artifacts', APP_ID, 'public', 'data', 'inventory', id)); } 
         catch (err) { console.error(err); }
+      });
+    };
+    window.deleteSubcategory = (id) => {
+      window.showConfirm("¿Eliminar subcategoría?", "Los registros que ya usen esta subcategoría no se verán afectados, pero ya no podrás seleccionarla para nuevos movimientos.", async () => {
+        try {
+          await deleteDoc(doc(db, 'artifacts', APP_ID, 'public', 'data', 'subcategories', id));
+        } catch (err) { console.error(err); }
       });
     };
 
@@ -2380,6 +2424,37 @@
         }
       }
     });
+
+    // Guardado y eliminación de subcategorías personalizadas
+    document.getElementById('new-subcat-form')?.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const typeInput = document.getElementById('new-subcat-type');
+      const emojiInput = document.getElementById('new-subcat-emoji');
+      const nameInput = document.getElementById('new-subcat-name');
+
+      const type = typeInput ? typeInput.value : 'gasto';
+      const emoji = emojiInput ? (emojiInput.value.trim() || '🏷️') : '🏷️';
+      const name = nameInput ? nameInput.value.trim() : '';
+
+      if (!name) return;
+
+      try {
+        await addDoc(collection(db, 'artifacts', APP_ID, 'public', 'data', 'subcategories'), {
+          type: type,
+          name: name,
+          emoji: emoji,
+          isDefault: false,
+          timestamp: new Date().toISOString()
+        });
+        if (emojiInput) emojiInput.value = '';
+        if (nameInput) nameInput.value = '';
+        renderSubcategoriesManagerList();
+      } catch (error) {
+        console.error(error);
+      }
+    });
+
+    document.getElementById('subcat-filter')?.addEventListener('change', renderSubcategoriesManagerList);
 
     function getMonthExportData() {
       const year = currentDate.getFullYear();
